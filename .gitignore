@@ -26,3 +26,11 @@
 *.exe
 *.out
 *.app
+
+# Folders
+cmake-build-debug/
+
+.directory
+.git/
+.idea/
+
