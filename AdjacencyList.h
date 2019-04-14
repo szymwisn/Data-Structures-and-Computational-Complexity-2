@@ -1,5 +1,5 @@
-#ifndef DATA_STRUCTURES_AND_COMPUTATIONAL_COMPLEXITY_2_AdjacencyMatrix_H
-#define DATA_STRUCTURES_AND_COMPUTATIONAL_COMPLEXITY_2_AdjacencyMatrix_H
+#ifndef DATA_STRUCTURES_AND_COMPUTATIONAL_COMPLEXITY_2_ADJACENCYLIST_H
+#define DATA_STRUCTURES_AND_COMPUTATIONAL_COMPLEXITY_2_ADJACENCYLIST_H
 
 #include<string>
 #include<iostream>
@@ -11,15 +11,15 @@ struct Node {
     int weight;
 };
 
-class AdjacencyMatrix {
+class AdjacencyList {
     // TODO ogarnac liste sasiadow
     bool directed; // dla algorytmow MST false, dla najkrotszej drogi true
     int nodes;
 
 public:
     // konstruktor i destruktor
-    AdjacencyMatrix();
-    ~AdjacencyMatrix();
+    AdjacencyList();
+    ~AdjacencyList();
 
     // glowne funkcje
     void loadFromFile(string fileName);

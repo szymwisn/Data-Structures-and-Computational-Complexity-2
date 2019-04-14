@@ -1,5 +1,5 @@
 #include "Menu.h"
-#include "AdjacencyMatrix.h"
+#include "AdjacencyList.h"
 #include "AdjacencyMatrix.h"
 
 void Menu::displayMenuMST() {
@@ -27,7 +27,7 @@ void Menu::displayMenuShortestPath() {
 }
 
 void Menu::menuMST() {
-    AdjacencyMatrix al;
+    AdjacencyList al;
     AdjacencyMatrix am;
 
     char opt;
@@ -91,7 +91,7 @@ void Menu::menuMST() {
 }
 
 void Menu::menuShortestPath() {
-    AdjacencyMatrix al;
+    AdjacencyList al;
     AdjacencyMatrix am;
 
     char opt;

@@ -1,41 +1,41 @@
-#include "AdjacencyMatrix.h"
+#include "AdjacencyList.h"
 
-AdjacencyMatrix::AdjacencyMatrix() {
-
-}
-
-AdjacencyMatrix::~AdjacencyMatrix() {
+AdjacencyList::AdjacencyList() {
 
 }
 
-void AdjacencyMatrix::loadFromFile(string fileName) {
+AdjacencyList::~AdjacencyList() {
 
 }
 
-void AdjacencyMatrix::generate(int n, double density) {
+void AdjacencyList::loadFromFile(string fileName) {
 
 }
 
-void AdjacencyMatrix::display() {
+void AdjacencyList::generate(int n, double density) {
 
 }
 
-void AdjacencyMatrix::prim() {
+void AdjacencyList::display() {
 
 }
 
-void AdjacencyMatrix::kruskal() {
+void AdjacencyList::prim() {
 
 }
 
-void AdjacencyMatrix::dijkstra() {
+void AdjacencyList::kruskal() {
 
 }
 
-void AdjacencyMatrix::fordBellman() {
+void AdjacencyList::dijkstra() {
 
 }
 
-void AdjacencyMatrix::clear() {
+void AdjacencyList::fordBellman() {
+
+}
+
+void AdjacencyList::clear() {
 
 }
