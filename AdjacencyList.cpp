@@ -12,7 +12,7 @@ void AdjacencyList::loadFromFile(string fileName) {
 
 }
 
-void AdjacencyList::generate(int n, double density) {
+void AdjacencyList::generate(int nodes, double density) {
 
 }
 

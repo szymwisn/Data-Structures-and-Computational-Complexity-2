@@ -3,11 +3,16 @@
 
 #include<string>
 #include<iostream>
+#include <vector>
+#include <list>
 
 using namespace std;
 
 class AdjacencyMatrix {
-    // TODO ogarnac macierz sasiedztwa
+    vector<vector<int>> graph;
+    int nodes;
+    double density;
+    bool directed; // dla algorytmow MST false, dla najkrotszej drogi true
 
 public:
     // konstruktor i destruktor
@@ -16,7 +21,7 @@ public:
 
     // glowne funkcje
     void loadFromFile(string fileName);
-    void generate(int n, double density);
+    void generate(int nodes, double density);
     void display();
 
     // algorytmy
