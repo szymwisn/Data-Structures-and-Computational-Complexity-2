@@ -3,8 +3,6 @@
 
 #include<string>
 #include<iostream>
-#include <vector>
-#include <list>
 
 using namespace std;
 
@@ -14,10 +12,9 @@ struct Node {
 };
 
 class AdjacencyList {
-    vector<list<Node>> graph;
-    int nodes;
-    double density;
+    // TODO ogarnac liste sasiadow
     bool directed; // dla algorytmow MST false, dla najkrotszej drogi true
+    int nodes;
 
 public:
     // konstruktor i destruktor
@@ -26,7 +23,7 @@ public:
 
     // glowne funkcje
     void loadFromFile(string fileName);
-    void generate(int nodes, double density);
+    void generate(int n, double density);
     void display();
 
     // algorytmy
