@@ -12,7 +12,7 @@ void AdjacencyMatrix::loadFromFile(string fileName) {
 
 }
 
-void AdjacencyMatrix::generate(int n, double density) {
+void AdjacencyMatrix::generate(int nodes, double density) {
 
 }
 
