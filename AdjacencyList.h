@@ -11,19 +11,19 @@
 using namespace std;
 
 class AdjacencyList {
-    struct element {
+    struct Node {
         int source;
         int destination;
         int weight;
 
-        explicit element(int src = 0, int dest = 0, int weight = 0) {
+        explicit Node(int src = 0, int dest = 0, int weight = 0) {
             this->source = src;
             this->destination = dest;
             this->weight = weight;
         }
     };
 
-    vector<list<element>> graph;
+    vector<list<Node>> graph;
     int nodes;  // ilosc wezlow
     int edges; // ilosc krawedzi
     double density;
@@ -39,7 +39,7 @@ public:
     // glowne funkcje
     void loadFromFile(string fileName, string type);
     void generate(int nodes, double density);
-    void addNode(int src, int dest, int weight, vector<list<element>>& graph);
+    void addNode(int src, int dest, int weight, vector<list<Node>>& graph);
     void display();
     void clear();
 
@@ -48,9 +48,6 @@ public:
     void kruskal();
     void dijkstra();
     void fordBellman();
-
-    // funkcje pomocnicze
-//    vector<list<element>> getGraph() { return this->graph; }
 };
 
 
