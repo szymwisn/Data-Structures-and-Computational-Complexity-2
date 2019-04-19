@@ -12,7 +12,6 @@ AdjacencyList::AdjacencyList(string fileName, string type) : AdjacencyList() {
 }
 
 AdjacencyList::AdjacencyList(int nodes, double density) : AdjacencyList() {
-    this->graph.resize(nodes, list<Node>(0));
     generate(nodes, density);
 }
 
@@ -46,7 +45,6 @@ void AdjacencyList::loadFromFile(string fileName, string type) {
 
         // wczytywanie kolejnych wersow z pliku
         for(int i = 0; i < this->edges; i++) {
-
             file >> str;
             node.source = stoi(str);
 
@@ -56,7 +54,7 @@ void AdjacencyList::loadFromFile(string fileName, string type) {
             file >> str;
             node.weight = stoi(str);
 
-            addNode(node.source, node.destination, node.weight, this->graph);
+            addNode(node.source, node.destination, node.weight);
         }
 
         file.close();
@@ -68,26 +66,49 @@ void AdjacencyList::loadFromFile(string fileName, string type) {
 void AdjacencyList::generate(int nodes, double density) {
     clear();
 
+    if(directed) {
+        this->edges = (int) (density * nodes * (nodes - 1));
+    } else {
+        this->edges = (int) ((density * nodes * (nodes - 1)) / 2);
+    }
+
+    cout << "\nEdges: " << this->edges << endl;
+
     this->nodes = nodes;
 
-    for(int i = 0; i < nodes; i++) {
+    this->graph.resize(this->nodes, list<Node>(0));
+
+    for(int i = 0; i < this->edges; i++) {
         addNode(rand() % this->nodes, // source
                 rand() % this->nodes, // destination
-                rand() % 10 + 1,      // weight
-                graph);
+                rand() % 10 + 1);     // weight
     }
 }
 
 void AdjacencyList::display() {
-    for(int i = 0; i < graph.size(); i++) {
-        printf("\nNode[%d]: ", i);
+    if(directed) {
+        printf("\n--- Graf skierowany ---");
+        for(int i = 0; i < graph.size(); i++) {
+            printf("\nNode[%d]: ", i);
 
-        for (auto &iter : graph[i]) {
-            printf(" -> %d(w: %d)   ", iter.destination, iter.weight);
+            for (auto &iter : graph[i]) {
+                printf(" -> %d(w: %d)   ", iter.destination, iter.weight);
+            }
         }
+        cout << endl;
+    } else {
+        printf("\n--- Graf nieskierowany ---");
+        for(int i = 0; i < graph.size(); i++) {
+            printf("\nNode[%d]: ", i);
+
+            for (auto &iter : graph[i]) {
+                printf(" -> %d(w: %d)   ", iter.destination, iter.weight);
+            }
+        }
+        cout << endl;
     }
 
-    cout << endl;
+
 }
 
 void AdjacencyList::prim() {
@@ -110,11 +131,16 @@ void AdjacencyList::clear() {
     this->nodes = 0;
     this->edges = 0;
     this->density = 0;
-    this->directed = true; //TODO zastanowic sie nad tym
     this->graph.clear();
 }
 
-void AdjacencyList::addNode(int src, int dest, int weight, vector<list<Node>>& graph) {
-    this->graph.resize(nodes, list<Node>(0));
-    graph[src].push_back(Node(src, dest, weight));
+void AdjacencyList::addNode(int src, int dest, int weight) {
+    this->graph.resize(this->nodes, list<Node>(0));
+
+    if(this->directed) {
+        this->graph[src].push_back(Node(src, dest, weight));
+    } else {
+        this->graph[src].push_back(Node(src, dest, weight));
+        this->graph[dest].push_back(Node(dest, src, weight));
+    }
 }

@@ -24,10 +24,10 @@ class AdjacencyList {
     };
 
     vector<list<Node>> graph;
+    bool directed;
     int nodes;  // ilosc wezlow
     int edges; // ilosc krawedzi
     double density;
-    bool directed; // dla algorytmow MST false, dla najkrotszej drogi true
 
 public:
     // konstruktor i destruktor
@@ -39,7 +39,7 @@ public:
     // glowne funkcje
     void loadFromFile(string fileName, string type);
     void generate(int nodes, double density);
-    void addNode(int src, int dest, int weight, vector<list<Node>>& graph);
+    void addNode(int src, int dest, int weight);
     void display();
     void clear();
 
