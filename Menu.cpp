@@ -43,7 +43,7 @@ void Menu::menuMST() {
                 cout << " Podaj nazwe pliku:";
                 cin >> fileName;
 
-                al.loadFromFile(fileName);
+                al.loadFromFile(fileName, "");
                 al.display();
 
                 am.loadFromFile(fileName);
@@ -107,7 +107,7 @@ void Menu::menuShortestPath() {
                 cout << " Podaj nazwe pliku:";
                 cin >> fileName;
 
-                al.loadFromFile(fileName);
+                al.loadFromFile(fileName, "shortest_path");
                 al.display();
 
                 am.loadFromFile(fileName);
