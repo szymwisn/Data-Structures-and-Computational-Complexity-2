@@ -30,6 +30,11 @@ void Menu::menuMST() {
     AdjacencyList al;
     AdjacencyMatrix am;
 
+    // Dla algorytmow MST graf jest nieskierowany
+    al.setDirected(false);
+    //TODO zajac sie tym
+    //am.setDirected(false);
+
     char opt;
     string fileName;
     int value;
@@ -43,7 +48,7 @@ void Menu::menuMST() {
                 cout << " Podaj nazwe pliku:";
                 cin >> fileName;
 
-                al.loadFromFile(fileName, "");
+                al.loadFromFile(fileName);
                 al.display();
 
                 am.loadFromFile(fileName);
@@ -94,6 +99,11 @@ void Menu::menuShortestPath() {
     AdjacencyList al;
     AdjacencyMatrix am;
 
+    // Dla algorytmow SP graf jest skierowany
+    al.setDirected(true);
+    //TODO zajac sie tym
+    //am.setDirected(true);
+
     char opt;
     string fileName;
     int index, value;
@@ -107,7 +117,7 @@ void Menu::menuShortestPath() {
                 cout << " Podaj nazwe pliku:";
                 cin >> fileName;
 
-                al.loadFromFile(fileName, "shortest_path");
+                al.loadFromFile(fileName);
                 al.display();
 
                 am.loadFromFile(fileName);

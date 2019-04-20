@@ -15,6 +15,7 @@ class AdjacencyList {
         int source;
         int destination;
         int weight;
+        int spFirstNode;
 
         explicit Node(int src = 0, int dest = 0, int weight = 0) {
             this->source = src;
@@ -24,7 +25,7 @@ class AdjacencyList {
     };
 
     vector<list<Node>> graph;
-    bool directed;
+    bool directed;  // 0 - MST, 1 - SP
     int nodes;  // ilosc wezlow
     int edges; // ilosc krawedzi
     double density;
@@ -32,12 +33,12 @@ class AdjacencyList {
 public:
     // konstruktor i destruktor
     AdjacencyList();
-    AdjacencyList(string fileName, string type);
+    AdjacencyList(string fileName);
     AdjacencyList(int nodes, double density);
     ~AdjacencyList();
 
     // glowne funkcje
-    void loadFromFile(string fileName, string type);
+    void loadFromFile(string fileName);
     void generate(int nodes, double density);
     void addNode(int src, int dest, int weight);
     void display();
@@ -48,6 +49,11 @@ public:
     void kruskal();
     void dijkstra();
     void fordBellman();
+
+    // funkcje pomocnicze
+    void setDirected(bool directed) {
+        this->directed = directed;
+    }
 };
 
 
