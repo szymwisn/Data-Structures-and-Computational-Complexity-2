@@ -42,10 +42,12 @@ void AdjacencyList::loadFromFile(string fileName) {
             node.spFirstNode = stoi(str);
         }
 
+        int source = 0;
+
         // wczytywanie kolejnych wersow z pliku
         for(int i = 0; i < this->edges; i++) {
             file >> str;
-            node.source = stoi(str);
+            source = stoi(str);
 
             file >> str;
             node.destination = stoi(str);
@@ -53,7 +55,7 @@ void AdjacencyList::loadFromFile(string fileName) {
             file >> str;
             node.weight = stoi(str);
 
-            addNode(node.source, node.destination, node.weight);
+            addNode(source, node.destination, node.weight);
         }
 
         file.close();
@@ -139,9 +141,9 @@ void AdjacencyList::addNode(int src, int dest, int weight) {
     this->graph.resize(this->nodes);
 
     if(this->directed) {
-        this->graph[src].push_back(Node(src, dest, weight));
+        this->graph[src].push_back(Node(dest, weight));
     } else {
-        this->graph[src].push_back(Node(src, dest, weight));
-        this->graph[dest].push_back(Node(dest, src, weight));
+        this->graph[src].push_back(Node(dest, weight));
+        this->graph[dest].push_back(Node(src, weight));
     }
 }

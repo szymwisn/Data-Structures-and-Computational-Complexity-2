@@ -12,13 +12,11 @@ using namespace std;
 
 class AdjacencyList {
     struct Node {
-        int source;
         int destination;
         int weight;
         int spFirstNode;
 
-        explicit Node(int src = 0, int dest = 0, int weight = 0) {
-            this->source = src;
+        explicit Node(int dest = 0, int weight = 0) {
             this->destination = dest;
             this->weight = weight;
         }
