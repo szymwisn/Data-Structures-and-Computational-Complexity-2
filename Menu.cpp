@@ -77,10 +77,10 @@ void Menu::menuMST() {
 
             case '4': // algorytm prima
                 al.prim();
-                al.display();
+//                al.display();
 
                 am.prim();
-                am.display();
+//                am.display();
                 break;
 
             case '5': // algorytm kruskala
