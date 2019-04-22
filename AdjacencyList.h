@@ -32,8 +32,8 @@ class AdjacencyList {
 
 
     vector<list<Edge>> graph;
-    vector<list<Edge>> spanningTree; //TODO w clear czyszczenie tego
-    priority_queue<Edge, vector<Edge>, CompareWeight> priorQueue; //TODO w clear czyszczenie tego
+    vector<list<Edge>> spanningTree;
+    priority_queue<Edge, vector<Edge>, CompareWeight> priorQueue;
     bool directed;  // 0 - MST, 1 - SP
     int nodes;  // ilosc wezlow
     int edges; // ilosc krawedzi
@@ -43,8 +43,6 @@ class AdjacencyList {
 public:
     // konstruktor i destruktor
     AdjacencyList();
-    AdjacencyList(string fileName);
-    AdjacencyList(int nodes, double density);
     ~AdjacencyList();
 
     // glowne funkcje

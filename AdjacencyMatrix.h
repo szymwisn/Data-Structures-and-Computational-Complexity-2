@@ -4,15 +4,40 @@
 #include<string>
 #include<iostream>
 #include <vector>
-#include <list>
+#include <queue>
+#include <algorithm>
+#include <fstream>
 
 using namespace std;
 
 class AdjacencyMatrix {
-    vector<vector<int>> graph;
-    int nodes;
+    struct Edge {
+        int source;
+        int destination;
+        int weight;
+
+        explicit Edge(int src = 0, int dest = 0, int weight = 0) {
+            this->source = src;
+            this->destination = dest;
+            this->weight = weight;
+        }
+    };
+
+    // TODO pewnie zmienic cala funkcje, ale to jak zajme sie algo
+    struct CompareWeight {
+        bool operator()(Edge const& e1, Edge const& e2) {
+            return e1.weight > e2.weight;
+        }
+    };
+
+
+//    vector<vector<int>> graph;
+    int **graph;
+    bool directed;  // 0 - MST, 1 - SP
+    int nodes;  // ilosc wezlow
+    int edges; // ilosc krawedzi
     double density;
-    bool directed; // dla algorytmow MST false, dla najkrotszej drogi true
+    int startNodeSP;
 
 public:
     // konstruktor i destruktor
@@ -22,7 +47,9 @@ public:
     // glowne funkcje
     void loadFromFile(string fileName);
     void generate(int nodes, double density);
+//    void addEdge(int src, int dest, int weight);
     void display();
+    void clear();
 
     // algorytmy
     void prim();
@@ -31,7 +58,9 @@ public:
     void fordBellman();
 
     // funkcje pomocnicze
-    void clear();
+    void setDirected(bool directed) {
+        this->directed = directed;
+    }
 };
 
 

@@ -4,7 +4,7 @@
 
 void Menu::displayMenuMST() {
     cout << endl;
-    cout << "--- wyznaczanie minimalnego drzewa rozpinającego (MST) ---" << endl;
+    cout << "=== wyznaczanie minimalnego drzewa rozpinającego (MST) ===" << endl;
     cout << "1. Wczytaj z pliku" << endl;
     cout << "2. Wygeneruj graf losowo" << endl;
     cout << "3. Wyswietl listowo i macierzowo na ekranie" << endl;
@@ -16,7 +16,7 @@ void Menu::displayMenuMST() {
 
 void Menu::displayMenuShortestPath() {
     cout << endl;
-    cout << "--- wyznaczanie najkrótszej ścieżki w grafie ---" << endl;
+    cout << "=== wyznaczanie najkrótszej ścieżki w grafie ===" << endl;
     cout << "1. Wczytaj z pliku" << endl;
     cout << "2. Wygeneruj graf losowo" << endl;
     cout << "3. Wyswietl listowo i macierzowo na ekranie" << endl;
@@ -32,8 +32,7 @@ void Menu::menuMST() {
 
     // Dla algorytmow MST graf jest nieskierowany
     al.setDirected(false);
-    //TODO zajac sie tym
-    //am.setDirected(false);
+    am.setDirected(false);
 
     char opt;
     string fileName;
@@ -101,8 +100,7 @@ void Menu::menuShortestPath() {
 
     // Dla algorytmow SP graf jest skierowany
     al.setDirected(true);
-    //TODO zajac sie tym
-    //am.setDirected(true);
+    am.setDirected(true);
 
     char opt;
     string fileName;

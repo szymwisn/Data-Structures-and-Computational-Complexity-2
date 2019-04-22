@@ -7,14 +7,6 @@ AdjacencyList::AdjacencyList() {
     this->startNodeSP = 0;
 }
 
-AdjacencyList::AdjacencyList(string fileName) : AdjacencyList() {
-    loadFromFile(fileName);
-}
-
-AdjacencyList::AdjacencyList(int nodes, double density) : AdjacencyList() {
-    generate(nodes, density);
-}
-
 AdjacencyList::~AdjacencyList() {
     clear();
 }
@@ -35,15 +27,11 @@ void AdjacencyList::loadFromFile(string fileName) {
         file >> str;
         this->nodes = stoi(str);
 
-//        printf("edges: %d, nodes: %d\n", edges, nodes);
-
         // dla algorytmow SP
         if (directed) {
             file >> str;
             this->startNodeSP = stoi(str);
         }
-
-//        printf("\n\nstnsp: %d\n\n", this->startNodeSP);
 
         // wczytywanie kolejnych wersow z pliku
         for(int i = 0; i < this->edges; i++) {
@@ -89,9 +77,10 @@ void AdjacencyList::generate(int nodes, double density) {
 }
 
 void AdjacencyList::display() {
+    printf("\n--- Lista sasiedztwa ---");
+
     // Graf skierowany - algorytmy SP
     if(directed) {
-        printf("\n--- Graf skierowany ---");
         for(int i = 0; i < graph.size(); i++) {
             printf("\nNode[%d]:   ", i);
 
@@ -103,7 +92,6 @@ void AdjacencyList::display() {
     }
     // Graf nieskierowany - algorytmy MST
     else {
-        printf("\n--- Graf nieskierowany ---");
         for(int i = 0; i < graph.size(); i++) {
             printf("\nNode[%d]:   ", i);
 
@@ -171,6 +159,8 @@ void AdjacencyList::prim() {
         }
     }
 
+
+    printf("MST - reprezentacja listowa\n");
     for (auto &i : spanningTree) {
         Edge edge;
 
@@ -184,6 +174,8 @@ void AdjacencyList::prim() {
     }
 
     printf("\nSuma wag: %d\n", weights);
+
+    delete [] visited;
 }
 
 void AdjacencyList::kruskal() {
@@ -204,6 +196,7 @@ void AdjacencyList::clear() {
     this->density = 0;
     this->startNodeSP = 0;
     this->graph.clear();
+    this->spanningTree.clear();
     this->priorQueue.empty();
 }
 
