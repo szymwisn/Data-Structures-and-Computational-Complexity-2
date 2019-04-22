@@ -115,8 +115,23 @@ void AdjacencyList::display() {
 
     cout << endl;
 
-    for(int i = 0; i < this->graph.size() - 1; i++) {
+    for(int i = 0; i < this->graph.size(); i++) {
+        printf("Node[%d]:    ", i);
         for (auto &iter : this->graph[i]) {
+            printf("%d -> %d (w: %d)    ", iter.source, iter.destination, iter.weight);
+        }
+        cout << endl;
+    }
+}
+
+void AdjacencyList::display(vector<list<Edge>> g) {
+    printf("\n--- Lista sasiedztwa ---");
+
+    cout << endl;
+
+    for(int i = 0; i < g.size(); i++) {
+        printf("Node[%d]:    ", i);
+        for (auto &iter : g[i]) {
             printf("%d -> %d (w: %d)    ", iter.source, iter.destination, iter.weight);
         }
         cout << endl;
@@ -178,14 +193,7 @@ void AdjacencyList::prim() {
         node = minEdge.destination;
     }
 
-    printf("MST - reprezentacja listowa\n");
-
-    for(int i = 0; i < this->spanningTree.size() - 1; i++) {
-        for (auto &iter : this->spanningTree[i]) {
-            printf("%d -> %d (w: %d)    ", iter.source, iter.destination, iter.weight);
-        }
-        cout << endl;
-    }
+    display(this->spanningTree);
 
     printf("\nSuma wag: %d\n", weights);
 

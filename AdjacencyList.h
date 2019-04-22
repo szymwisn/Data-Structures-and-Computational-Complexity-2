@@ -50,6 +50,7 @@ public:
     void generate(int nodes, double density);
     void addEdge(int src, int dest, int weight);
     void display();
+    void display(vector<list<Edge>> g);
     void clear();
 
     // algorytmy
