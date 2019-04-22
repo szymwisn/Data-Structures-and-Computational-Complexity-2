@@ -75,7 +75,7 @@ void AdjacencyList::generate(int nodes, double density) {
     }
 
     // generowanie drzewa rozpinajacego
-    int node = rand() % nodes;
+    int node = rand() % this->nodes;
 
     for(int i = 0; i < this->graph.size() - 1; i++) {
         Edge edge;
@@ -106,30 +106,18 @@ void AdjacencyList::generate(int nodes, double density) {
 
         addEdge(edge.source, edge.destination, edge.weight);
     }
+
+    delete [] visited;
 }
 
 void AdjacencyList::display() {
     printf("\n--- Lista sasiedztwa ---");
 
-    // Graf skierowany - algorytmy SP
-    if(directed) {
-        for(int i = 0; i < graph.size(); i++) {
-            printf("\nNode[%d]:   ", i);
+    cout << endl;
 
-            for (auto &iter : graph[i]) {
-                printf("-> %d (w: %d)  ", iter.destination, iter.weight);
-            }
-        }
-        cout << endl;
-    }
-    // Graf nieskierowany - algorytmy MST
-    else {
-        for(int i = 0; i < graph.size(); i++) {
-            printf("\nNode[%d]:   ", i);
-
-            for (auto &iter : graph[i]) {
-                printf("-> %d (w: %d)  ", iter.destination, iter.weight);
-            }
+    for(int i = 0; i < this->graph.size() - 1; i++) {
+        for (auto &iter : this->graph[i]) {
+            printf("%d -> %d (w: %d)    ", iter.source, iter.destination, iter.weight);
         }
         cout << endl;
     }
@@ -148,21 +136,17 @@ void AdjacencyList::prim() {
     int node = 0;
 
     // ustawienie rozmiaru wektora zawierajacego drzewo rozpinajace
-    this->spanningTree.resize(this->nodes - 1);
+    this->spanningTree.resize(this->nodes);
 
     int weights = 0;
 
-    // size - 1, bo mst ma o 1 krawedz mniej
-    // TODO czy nie edges w forze?
-    for(int i = 0; i < this->graph.size() - 1; i ++) {
+    for (int i = 0; i < this->graph.size(); i++) {
         Edge minEdge;
 
         if(!visited[node]) {
-            visited[node] = true;
-            auto iter = graph[i].begin();
+            auto iter = graph[node].begin();
 
-            //TODO problem jest z tym while
-            while(iter != graph[i].end()) {
+            while(iter != graph[node].end()) {
                     if(!visited[(*iter).destination]) {
                         priorQueue.push((*iter));
                     }
@@ -170,40 +154,37 @@ void AdjacencyList::prim() {
             }
 
             minEdge = priorQueue.top();
+            this->priorQueue.pop();
 
             if(!visited[minEdge.destination]) {
                 this->spanningTree[node].push_back(Edge(minEdge.source, minEdge.destination, minEdge.weight));
-//                this->spanningTree[edge.destination].push_back(Edge(edge.destination, edge.source, edge.weight));
+                this->spanningTree[minEdge.destination].push_back(Edge(minEdge.destination, minEdge.source, minEdge.weight));
                 weights += minEdge.weight;
             }
 
-            node = minEdge.destination;
-
+            visited[node] = true;
         } else {
             minEdge = priorQueue.top();
+            this->priorQueue.pop();
 
             if(!visited[minEdge.destination]) {
                 this->spanningTree[node].push_back(Edge(minEdge.source, minEdge.destination, minEdge.weight));
-//                this->spanningTree[edge.destination].push_back(Edge(edge.destination, edge.source, edge.weight));
+                this->spanningTree[minEdge.destination].push_back(Edge(minEdge.destination, minEdge.source, minEdge.weight));
                 weights += minEdge.weight;
             }
 
-            node = minEdge.destination;
+            i--;
         }
+        node = minEdge.destination;
     }
 
-
     printf("MST - reprezentacja listowa\n");
-    for (auto &i : spanningTree) {
-        Edge edge;
 
-        auto iter = i.begin();
-
-        while(iter != i.end()) {
-            edge = (*iter);
-            printf("%d -> %d (w: %d)\n", edge.source, edge.destination, edge.weight);
-            iter++;
+    for(int i = 0; i < this->spanningTree.size() - 1; i++) {
+        for (auto &iter : this->spanningTree[i]) {
+            printf("%d -> %d (w: %d)    ", iter.source, iter.destination, iter.weight);
         }
+        cout << endl;
     }
 
     printf("\nSuma wag: %d\n", weights);

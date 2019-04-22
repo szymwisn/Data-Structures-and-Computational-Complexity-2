@@ -68,6 +68,72 @@ void AdjacencyMatrix::loadFromFile(string fileName) {
 
 void AdjacencyMatrix::generate(int nodes, double density) {
 
+    //TODO powinno byc to samo co w liscie sasiedztwa xd
+
+    clear();
+
+    if(directed) {
+        this->edges = (int) (density * nodes * (nodes - 1));
+    } else {
+        this->edges = (int) ((density * nodes * (nodes - 1)) / 2);
+    }
+
+    this->nodes = nodes;
+
+    this->graph = new int * [this->nodes];
+
+    for(int k = 0; k < this->nodes; k++) {
+        this->graph[k] = new int [this->nodes];
+    }
+
+    for(int k = 0; k < this->nodes; k++) {
+        for(int l = 0; l < this->nodes; l++) {
+            this->graph[k][l] = 0;
+        }
+    }
+
+    // tablica informujaca o tym, czy dany wierzcholek byl odwiedzony
+    bool* visited = new bool[this->nodes];
+
+    // na poczatku wszystie wierzcholki nieodwiedzone
+    for(int i = 0; i < this->nodes; i++) {
+        visited[i] = false;
+    }
+
+    // generowanie drzewa rozpinajacego
+    int node = rand() % nodes;
+
+    for(int i = 0; i < this->nodes - 1; i++) {
+        Edge edge;
+        if(!visited[node]) {
+            visited[node] = true;
+            edge.source = node;
+            do {
+                edge.destination = rand() % nodes;
+            } while(visited[edge.destination]);
+
+            edge.weight = rand() % 10;
+
+            addEdge(edge.source, edge.destination, edge.weight);
+        }
+        node = edge.destination;
+    }
+
+    // dodanie pozostalych krawedzi
+    for(int i = this->nodes - 1; i < this->edges; i++) {
+        Edge edge;
+        edge.source = rand() % nodes;
+
+        do {
+            edge.destination = rand() % nodes;
+        } while(edge.source == edge.destination);
+
+        edge.weight = rand() % 10;
+
+        addEdge(edge.source, edge.destination, edge.weight);
+    }
+
+    delete [] visited;
 }
 
 void AdjacencyMatrix::display() {
