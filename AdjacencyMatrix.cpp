@@ -1,10 +1,11 @@
 #include "AdjacencyMatrix.h"
 
-AdjacencyMatrix::AdjacencyMatrix() {
+AdjacencyMatrix::AdjacencyMatrix(bool directed) {
     this->nodes = 0;
     this->edges = 0;
     this->density = 0;
     this->startNodeSP = 0;
+    this->directed = directed;
 }
 
 AdjacencyMatrix::~AdjacencyMatrix() {
@@ -56,8 +57,7 @@ void AdjacencyMatrix::loadFromFile(string fileName) {
             file >> str;
             edge.weight = stoi(str);
 
-            this->graph[edge.source][edge.destination] = edge.weight;
-            this->graph[edge.destination][edge.source] = edge.weight;
+            addEdge(edge.source, edge.destination, edge.weight);
         }
 
         file.close();
@@ -118,5 +118,14 @@ void AdjacencyMatrix::clear() {
 
     if(this->nodes > 0) {
         delete [] this->graph;
+    }
+}
+
+void AdjacencyMatrix::addEdge(int src, int dest, int weight) {
+    if(this->directed) {
+        this->graph[src][dest] = weight;
+    } else {
+        this->graph[src][dest] = weight;
+        this->graph[dest][src] = weight;
     }
 }

@@ -41,13 +41,13 @@ class AdjacencyMatrix {
 
 public:
     // konstruktor i destruktor
-    AdjacencyMatrix();
+    AdjacencyMatrix(bool directed);
     ~AdjacencyMatrix();
 
     // glowne funkcje
     void loadFromFile(string fileName);
     void generate(int nodes, double density);
-//    void addEdge(int src, int dest, int weight);
+    void addEdge(int src, int dest, int weight);
     void display();
     void clear();
 
@@ -56,11 +56,6 @@ public:
     void kruskal();
     void dijkstra();
     void fordBellman();
-
-    // funkcje pomocnicze
-    void setDirected(bool directed) {
-        this->directed = directed;
-    }
 };
 
 

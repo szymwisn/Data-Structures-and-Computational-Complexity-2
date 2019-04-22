@@ -1,10 +1,11 @@
 #include "AdjacencyList.h"
 
-AdjacencyList::AdjacencyList() {
+AdjacencyList::AdjacencyList(bool directed) {
     this->nodes = 0;
     this->edges = 0;
     this->density = 0;
     this->startNodeSP = 0;
+    this->directed = directed;
 }
 
 AdjacencyList::~AdjacencyList() {

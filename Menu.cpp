@@ -27,12 +27,9 @@ void Menu::displayMenuShortestPath() {
 }
 
 void Menu::menuMST() {
-    AdjacencyList al;
-    AdjacencyMatrix am;
-
     // Dla algorytmow MST graf jest nieskierowany
-    al.setDirected(false);
-    am.setDirected(false);
+    AdjacencyList al(false);
+    AdjacencyMatrix am(false);
 
     char opt;
     string fileName;
@@ -76,18 +73,12 @@ void Menu::menuMST() {
 
             case '4': // algorytm prima
                 al.prim();
-//                al.display();
-
                 am.prim();
-//                am.display();
                 break;
 
             case '5': // algorytm kruskala
                 al.kruskal();
-                al.display();
-
                 am.kruskal();
-                am.display();
                 break;
         }
 
@@ -95,12 +86,9 @@ void Menu::menuMST() {
 }
 
 void Menu::menuShortestPath() {
-    AdjacencyList al;
-    AdjacencyMatrix am;
-
     // Dla algorytmow SP graf jest skierowany
-    al.setDirected(true);
-    am.setDirected(true);
+    AdjacencyList al(true);
+    AdjacencyMatrix am(true);
 
     char opt;
     string fileName;
@@ -144,18 +132,12 @@ void Menu::menuShortestPath() {
 
             case '4': // algorytm dijkstry
                 al.dijkstra();
-                al.display();
-
                 am.dijkstra();
-                am.display();
                 break;
 
             case '5': // algorytm forda-bellmana
                 al.fordBellman();
-                al.display();
-
                 am.fordBellman();
-                am.display();
                 break;
         }
 

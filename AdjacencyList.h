@@ -42,7 +42,7 @@ class AdjacencyList {
 
 public:
     // konstruktor i destruktor
-    AdjacencyList();
+    AdjacencyList(bool directed);
     ~AdjacencyList();
 
     // glowne funkcje
@@ -57,11 +57,6 @@ public:
     void kruskal();
     void dijkstra();
     void fordBellman();
-
-    // funkcje pomocnicze
-    void setDirected(bool directed) {
-        this->directed = directed;
-    }
 };
 
 
