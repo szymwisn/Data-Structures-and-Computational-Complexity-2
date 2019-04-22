@@ -115,9 +115,9 @@ void Menu::menuShortestPath() {
                 cin >> value;
 
                 double density;
-
                 cout << " podaj gestosc:";
                 cin >> density;
+
                 al.generate(value, density);
                 al.display();
 

@@ -127,6 +127,8 @@ void AdjacencyList::display() {
 void AdjacencyList::display(vector<list<Edge>> g) {
     printf("\n--- Lista sasiedztwa ---");
 
+    // TODO trzeba posortowac, bo zle sie wyswietla
+
     cout << endl;
 
     for(int i = 0; i < g.size(); i++) {
@@ -142,7 +144,7 @@ void AdjacencyList::prim() {
     // tablica informujaca o tym, czy dany wierzcholek byl odwiedzony
     bool* visited = new bool[this->graph.size()];
 
-    // na poczatku wszystie wierzcholki nieodwiedzone
+    // na poczatku wszystkie wierzcholki nieodwiedzone
     for(int i = 0; i < this->graph.size(); i++) {
         visited[i] = false;
     }

@@ -31,8 +31,9 @@ class AdjacencyMatrix {
     };
 
 
-//    vector<vector<int>> graph;
     int **graph;
+    int **spanningTree;
+    priority_queue<Edge, vector<Edge>, CompareWeight> priorQueue;
     bool directed;  // 0 - MST, 1 - SP
     int nodes;  // ilosc wezlow
     int edges; // ilosc krawedzi
@@ -49,6 +50,7 @@ public:
     void generate(int nodes, double density);
     void addEdge(int src, int dest, int weight);
     void display();
+    void display(int ** graph);
     void clear();
 
     // algorytmy

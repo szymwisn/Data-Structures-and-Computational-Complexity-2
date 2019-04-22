@@ -155,9 +155,94 @@ void AdjacencyMatrix::display() {
     }
 }
 
-void AdjacencyMatrix::prim() {
-    // TODO PRZY NIESKIEROWANYM WSZYSTKIE WIERZCHOLKI SA W POLOWIE MACIERZY
+void AdjacencyMatrix::display(int ** g) {
+    printf("\n--- Macierz sasiedztwa ---\n");
 
+    cout << "    ";
+    for(int i = 0; i < this->nodes; i++) {
+        cout << "[" << i << "] ";
+    }
+
+    cout << endl;
+
+    for(int i = 0; i < this->nodes; i++) {
+        cout << "[" << i << "] ";
+        for(int j = 0; j < this->nodes; j++) {
+            cout << " " << g[i][j] << "  ";
+        }
+        cout << endl;
+    }
+}
+
+void AdjacencyMatrix::prim() {
+    // tablica informujaca o tym, czy dany wierzcholek byl odwiedzony
+    bool* visited = new bool[this->nodes];
+
+    // na poczatku wszystkie wierzcholki nieodwiedzone
+    for(int i = 0; i < this->nodes; i++) {
+        visited[i] = false;
+    }
+
+    // stworzenie i wypelnienie spanning tree
+    this->spanningTree = new int * [this->nodes];
+
+    for(int k = 0; k < this->nodes; k++) {
+        this->spanningTree[k] = new int [this->nodes];
+    }
+
+    for(int k = 0; k < this->nodes; k++) {
+        for(int l = 0; l < this->nodes; l++) {
+            this->spanningTree[k][l] = 0;
+        }
+    }
+
+    // numer wierzcholka - zaczynamy od 0
+    int node = 0;
+
+    int weights = 0;
+
+    for (int i = 0; i < this->nodes; i++) {
+        Edge minEdge;
+        Edge edge;
+
+        if(!visited[node]) {
+            for(int j = 0; j < this->nodes; j++) {
+                if(!visited[node] && this->graph[node][j] != 0) {
+                    edge.source = node;
+                    edge.destination = j;
+                    edge.weight = this->graph[node][j];
+                    priorQueue.push(edge);
+                }
+            }
+
+            minEdge = priorQueue.top();
+            this->priorQueue.pop();
+
+            if(!visited[minEdge.destination]) {
+                this->spanningTree[minEdge.source][minEdge.destination] = minEdge.weight;
+                this->spanningTree[minEdge.destination][minEdge.source] = minEdge.weight;
+                weights += minEdge.weight;
+            }
+            visited[node] = true;
+        } else {
+            minEdge = priorQueue.top();
+            this->priorQueue.pop();
+
+            if(!visited[minEdge.destination]) {
+                this->spanningTree[minEdge.source][minEdge.destination] = minEdge.weight;
+                this->spanningTree[minEdge.destination][minEdge.source] = minEdge.weight;
+                weights += minEdge.weight;
+            }
+            i--;
+        }
+        node = minEdge.destination;
+    }
+
+    display(this->spanningTree);
+
+    printf("\nSuma wag: %d\n", weights);
+
+    delete [] visited;
 }
 
 void AdjacencyMatrix::kruskal() {
@@ -177,13 +262,19 @@ void AdjacencyMatrix::clear() {
     this->edges = 0;
     this->density = 0;
     this->startNodeSP = 0;
+    this->priorQueue.empty();
 
     for(int i = 0; i < this->nodes; i++) {
         delete [] this->graph[i];
     }
 
+    for(int i = 0; i < this->nodes; i++) {
+        delete [] this->spanningTree[i];
+    }
+
     if(this->nodes > 0) {
         delete [] this->graph;
+        delete [] this->spanningTree;
     }
 }
 
