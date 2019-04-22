@@ -57,8 +57,6 @@ void AdjacencyList::loadFromFile(string fileName) {
 void AdjacencyList::generate(int nodes, double density) {
     clear();
 
-    // TODO najpierw generowac drzewo rozpinajace, potem pozostale krawedzie
-
     if(directed) {
         this->edges = (int) (density * nodes * (nodes - 1));
     } else {
@@ -66,14 +64,47 @@ void AdjacencyList::generate(int nodes, double density) {
     }
 
     this->nodes = nodes;
-
     this->graph.resize(this->nodes);
 
-    //TODO spojrzec na to swiezym okiem
-    for(int i = 0; i < this->edges; i++) {
-        addEdge(rand() % this->nodes, // source
-                rand() % this->nodes, // destination
-                rand() % 100);        // weight
+    // tablica informujaca o tym, czy dany wierzcholek byl odwiedzony
+    bool* visited = new bool[this->graph.size()];
+
+    // na poczatku wszystie wierzcholki nieodwiedzone
+    for(int i = 0; i < this->graph.size(); i++) {
+        visited[i] = false;
+    }
+
+    // generowanie drzewa rozpinajacego
+    int node = rand() % nodes;
+
+    for(int i = 0; i < this->graph.size() - 1; i++) {
+        Edge edge;
+        if(!visited[node]) {
+            visited[node] = true;
+            edge.source = node;
+            do {
+                edge.destination = rand() % nodes;
+            } while(visited[edge.destination]);
+
+            edge.weight = rand() % 10;
+
+            addEdge(edge.source, edge.destination, edge.weight);
+        }
+        node = edge.destination;
+    }
+
+    // dodanie pozostalych krawedzi
+    for(int i = this->graph.size() - 1; i < this->edges; i++) {
+        Edge edge;
+        edge.source = rand() % nodes;
+
+        do {
+            edge.destination = rand() % nodes;
+        } while(edge.source == edge.destination);
+
+        edge.weight = rand() % 10;
+
+        addEdge(edge.source, edge.destination, edge.weight);
     }
 }
 
@@ -122,6 +153,7 @@ void AdjacencyList::prim() {
     int weights = 0;
 
     // size - 1, bo mst ma o 1 krawedz mniej
+    // TODO czy nie edges w forze?
     for(int i = 0; i < this->graph.size() - 1; i ++) {
         Edge minEdge;
 
