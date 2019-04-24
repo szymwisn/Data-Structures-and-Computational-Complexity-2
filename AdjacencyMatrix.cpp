@@ -246,7 +246,13 @@ void AdjacencyMatrix::prim() {
 
     printf("\nSuma wag: %d\n", weights);
 
+    //czyszczenie
     delete [] visited;
+    this->priorQueue.empty();
+    for(int i = 0; i < this->nodes; i++) {
+        delete [] this->spanningTree[i];
+    }
+    delete [] spanningTree;
 }
 
 void AdjacencyMatrix::kruskal() {
