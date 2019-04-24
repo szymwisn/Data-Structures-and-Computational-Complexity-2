@@ -241,6 +241,7 @@ void AdjacencyList::dijkstra() {
         }
     }
 
+    printf("\n--- Algorytm wykonany na liscie sasiedztwa ---\n");
     printf("Odleglosc z wierzcholka %d do pozostalych wierzcholkow:\n", this->startNodeSP);
     for(int i = 0; i < this->graph.size(); i++) {
             printf("%d -> %d: %d\n", this->startNodeSP, i, distances[i]);

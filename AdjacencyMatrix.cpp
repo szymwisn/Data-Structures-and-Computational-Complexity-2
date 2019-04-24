@@ -36,7 +36,7 @@ void AdjacencyMatrix::loadFromFile(string fileName) {
 
         for(int k = 0; k < this->nodes; k++) {
             for(int l = 0; l < this->nodes; l++) {
-                this->graph[k][l] = 0;
+                this->graph[k][l] = 999999999;
             }
         }
 
@@ -149,7 +149,11 @@ void AdjacencyMatrix::display() {
     for(int i = 0; i < this->nodes; i++) {
         cout << "[" << i << "] ";
         for(int j = 0; j < this->nodes; j++) {
-            cout << " " << this->graph[i][j] << "  ";
+            if(this->graph[i][j] == 999999999) {
+                cout << " " << "-" << "  ";
+            } else {
+                cout << " " << this->graph[i][j] << "  ";
+            }
         }
         cout << endl;
     }
@@ -250,7 +254,43 @@ void AdjacencyMatrix::kruskal() {
 }
 
 void AdjacencyMatrix::dijkstra() {
+    // numer wierzcholka startowego
+    int node = this->startNodeSP;
 
+    // zainicjalizowanie odleglosci dla kazdego wierzcholka
+    int* distances = new int[this->nodes];
+    for(int i = 0; i < this->nodes; i++) {
+        distances[i] = 999999999;
+    }
+
+    this->priorQueue.push(Edge(node, node, 0));
+    distances[node] = 0;
+
+    while(!this->priorQueue.empty()) {
+
+        int v1 = priorQueue.top().source;
+        priorQueue.pop();
+
+        for(int i = 0; i < this->nodes; i++) {
+            int weight = graph[v1][i];
+
+            if(distances[i] > distances[v1] + weight) {
+                distances[i] = distances[v1] + weight;
+                priorQueue.push(Edge(i, v1, weight));
+            }
+        }
+    }
+
+    printf("\n--- Algorytm wykonany na macierzy sasiedztwa ---\n");
+    printf("Odleglosc z wierzcholka %d do pozostalych wierzcholkow:\n", this->startNodeSP);
+    for(int i = 0; i < this->nodes; i++) {
+        printf("%d -> %d: %d\n", this->startNodeSP, i, distances[i]);
+    }
+
+    // TODO zrobic wyswietlanie najkrotszej drogi z wierzcholka do kazdego innego wierzcholka
+
+    delete [] distances;
+    this->priorQueue.empty();
 }
 
 void AdjacencyMatrix::fordBellman() {
