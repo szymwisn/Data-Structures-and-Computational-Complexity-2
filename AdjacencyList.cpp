@@ -127,7 +127,7 @@ void AdjacencyList::display() {
 void AdjacencyList::display(vector<list<Edge>> g) {
     printf("\n--- Lista sasiedztwa ---");
 
-    // TODO trzeba posortowac, bo zle sie wyswietla
+    // TODO trzeba posortowac, bo zle sie wyswietla undirected
 
     cout << endl;
 
@@ -200,6 +200,10 @@ void AdjacencyList::prim() {
     printf("\nSuma wag: %d\n", weights);
 
     delete [] visited;
+
+    // TODO w matrixie
+    this->priorQueue.empty();
+    this->spanningTree.clear();
 }
 
 void AdjacencyList::kruskal() {
@@ -207,7 +211,45 @@ void AdjacencyList::kruskal() {
 }
 
 void AdjacencyList::dijkstra() {
+    // numer wierzcholka startowego
+    int node = this->startNodeSP;
 
+    // zainicjalizowanie odleglosci dla kazdego wierzcholka
+    int* distances = new int[this->graph.size()];
+    for(int i = 0; i < this->graph.size(); i++) {
+        distances[i] = 999999999;
+    }
+
+    this->priorQueue.push(Edge(node, node, 0));
+    distances[node] = 0;
+
+    while(!this->priorQueue.empty()) {
+
+        int v1 = priorQueue.top().source;
+        priorQueue.pop();
+
+        auto iter = this->graph[v1].begin();
+        while (iter != this->graph[v1].end()) {
+            int v2 = (*iter).destination;
+            int weight = (*iter).weight;
+
+            if(distances[v2] > distances[v1] + weight) {
+                distances[v2] = distances[v1] + weight;
+                priorQueue.push(Edge(v2, v1, weight));
+            }
+            iter++;
+        }
+    }
+
+    printf("Odleglosc z wierzcholka %d do pozostalych wierzcholkow:\n", this->startNodeSP);
+    for(int i = 0; i < this->graph.size(); i++) {
+            printf("%d -> %d: %d\n", this->startNodeSP, i, distances[i]);
+    }
+
+    // TODO zrobic wyswietlanie najkrotszej drogi z wierzcholka do kazdego innego wierzcholka
+
+    delete [] distances;
+    this->priorQueue.empty();
 }
 
 void AdjacencyList::fordBellman() {
