@@ -1,6 +1,4 @@
 #include "Menu.h"
-#include "AdjacencyList.h"
-#include "AdjacencyMatrix.h"
 
 void Menu::displayMenuMST() {
     cout << endl;

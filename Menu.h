@@ -3,6 +3,8 @@
 
 #include<string>
 #include<iostream>
+#include "AdjacencyList.h"
+#include "AdjacencyMatrix.h"
 
 using namespace std;
 
