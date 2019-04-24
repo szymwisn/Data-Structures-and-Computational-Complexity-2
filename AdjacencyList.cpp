@@ -210,6 +210,14 @@ void AdjacencyList::kruskal() {
 
 }
 
+void printPath(int parent[], int i) {
+    if(parent[i] == -1) {
+        return;
+    }
+    printPath(parent, parent[i]);
+    printf("-> %d ", i);
+}
+
 void AdjacencyList::dijkstra() {
     // numer wierzcholka startowego
     int node = this->startNodeSP;
@@ -220,8 +228,11 @@ void AdjacencyList::dijkstra() {
         distances[i] = 999999999;
     }
 
+    int * parent = new int[this->graph.size()];
+
     this->priorQueue.push(Edge(node, node, 0));
     distances[node] = 0;
+    parent[node] = -1;
 
     while(!this->priorQueue.empty()) {
 
@@ -232,10 +243,10 @@ void AdjacencyList::dijkstra() {
         while (iter != this->graph[v1].end()) {
             int v2 = (*iter).destination;
             int weight = (*iter).weight;
-
             if(distances[v2] > distances[v1] + weight) {
                 distances[v2] = distances[v1] + weight;
                 priorQueue.push(Edge(v2, v1, weight));
+                parent[v2] = v1;
             }
             iter++;
         }
@@ -243,13 +254,16 @@ void AdjacencyList::dijkstra() {
 
     printf("\n--- Algorytm wykonany na liscie sasiedztwa ---\n");
     printf("Odleglosc z wierzcholka %d do pozostalych wierzcholkow:\n", this->startNodeSP);
+    printf("Z:    Do:       Waga:    Sciezka:\n");
     for(int i = 0; i < this->graph.size(); i++) {
-            printf("%d -> %d: %d\n", this->startNodeSP, i, distances[i]);
+            printf("%d  ->  %d        %d        %d ", this->startNodeSP, i, distances[i], this->startNodeSP);
+
+            printPath(parent, i);
+            cout << endl;
     }
 
-    // TODO zrobic wyswietlanie najkrotszej drogi z wierzcholka do kazdego innego wierzcholka
-
     delete [] distances;
+    delete [] parent;
     this->priorQueue.empty();
 }
 
