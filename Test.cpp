@@ -13,7 +13,7 @@ void Test::testPrim(int nodes, double density) {
     average = sum / tests;
     sum = 0;
 
-    printf("\n---Lista sasiedztwa: algorytm Prima---\n");
+    printf("\n---Lista Prim---\n");
     printf("V = %d, D = %f, %d ns (%d pomiarow)", nodes, density, average, tests);
 
     cout << endl;
@@ -30,7 +30,7 @@ void Test::testPrim(int nodes, double density) {
     average = sum / tests;
     sum = 0;
 
-    printf("\n---Macierz sasiedztwa: algorytm Prima---\n");
+    printf("\n---Macierz Prim---\n");
     printf("V = %d, D = %f, %d ns (%d pomiarow)", nodes, density, average, tests);
 
     cout << endl;
@@ -49,7 +49,7 @@ void Test::testDijkstra(int nodes, double density) {
     average = sum / tests;
     sum = 0;
 
-    printf("\n---Lista sasiedztwa: algorytm Prima---\n");
+    printf("\n---Lista Dijkstra---\n");
     printf("V = %d, D = %f, %d ns (%d pomiarow)", nodes, density, average, tests);
 
     cout << endl;
@@ -66,8 +66,31 @@ void Test::testDijkstra(int nodes, double density) {
     average = sum / tests;
     sum = 0;
 
-    printf("\n---Macierz sasiedztwa: algorytm Prima---\n");
+    printf("\n---Macierz Dijkstry---\n");
     printf("V = %d, D = %f, %d ns (%d pomiarow)", nodes, density, average, tests);
 
     cout << endl;
+
+    cout << "\n=================================================================" << endl;
+}
+
+void Test::runTests() {
+    int sizes[5] = {20, 30, 50, 80, 100};
+
+    for(int i = 0; i < 5; i++) {
+        testPrim(sizes[i], 0.25);
+    }
+
+    for(int i = 0; i < 5; i++) {
+        testPrim(sizes[i], 0.50);
+
+    }
+
+    for(int i = 0; i < 5; i++) {
+        testPrim(sizes[i], 0.75);
+    }
+
+    for(int i = 0; i < 5; i++) {
+        testPrim(sizes[i], 0.99);
+    }
 }

@@ -7,6 +7,7 @@
 
 class Test {
 public:
+    void runTests();
     void testPrim(int nodes, double density);
     void testDijkstra(int nodes, double density);
 
