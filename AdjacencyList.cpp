@@ -102,7 +102,7 @@ vector<list<Edge>> AdjacencyList::generate(int nodes, double density) {
             } while(visited[edge.destination]);
 
             // losuje wage
-            edge.weight = rand() % 10;
+            edge.weight = rand() % 100;
 
             // dodaje wierzcholek do grafu
             addEdge(edge.source, edge.destination, edge.weight);
@@ -128,7 +128,7 @@ vector<list<Edge>> AdjacencyList::generate(int nodes, double density) {
             } while(edge.source == edge.destination || exists[edge.source][edge.destination]);
         }
 
-        edge.weight = rand() % 10;
+        edge.weight = rand() % 100;
 
         addEdge(edge.source, edge.destination, edge.weight);
         exists[edge.source][edge.destination] = true;
@@ -198,7 +198,7 @@ void AdjacencyList::prim() {
 
             // dodanie wierzcholka do kolejki piorytetowej
             while(iter != this->graph[node].end()) {
-                    if(!visited[(*iter).destination]) {
+                    if(!visited[node] && (*iter).weight != MAX) {
                         priorQueue.push((*iter));
                     }
                 iter++;
@@ -390,22 +390,26 @@ void AdjacencyList::fordBellman() {
     // ustawienie dystansu do siebie na 0
     distances[node] = 0;
 
-    // TODO do ogarniecia
+    // zapisanie wszystkich krawedzi do wektora
+    vector<Edge> edges;
+    for (auto &i : this->graph) {
+        auto iter = i.begin();
+        while(iter != i.end()) {
+            edges.push_back((*iter));
+            iter++;
+        }
+    }
 
-    for(int i = 0; i < this->graph.size() - 1; i++) {
-        auto iter = this->graph[i].begin();
-
-        while(iter != this->graph[i].end()) {
-
-            int u = (*iter).source;
-            int v = (*iter).destination;
-            int weight = (*iter).weight;
+    for(int i = 1; i < this->graph.size() - 1; i++) {
+        for (auto &edge : edges) {
+            int u = edge.source;
+            int v = edge.destination;
+            int weight = edge.weight;
 
             if(distances[u] != MAX && distances[v] > distances[u] + weight) {
                 distances[v] = distances[u] + weight;
                 parent[v] = u;
             }
-            iter++;
         }
     }
 
@@ -417,6 +421,16 @@ void AdjacencyList::fordBellman() {
 
         printPath(parent, i);
         cout << endl;
+    }
+
+    // sprawdzenie czy sa ujemne cykle
+    for (auto &edge : edges) {
+        int u = edge.source;
+        int v = edge.destination;
+        int weight = edge.weight;
+        if(distances[u] != MAX && distances[v] > distances[u] + weight) {
+            printf("\nGraf zawiera ujemny cykl.");
+        }
     }
 
     delete [] distances;
@@ -433,7 +447,6 @@ void AdjacencyList::clear() {
     this->graph.resize(0);
     this->spanningTree.clear();
     this->spanningTree.resize(0);
-    this->priorQueue.empty();
     priorQueue = priority_queue<Edge, vector<Edge>, CompareWeight>();
 }
 

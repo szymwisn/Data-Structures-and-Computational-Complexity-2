@@ -180,7 +180,7 @@ void AdjacencyMatrix::prim() {
         if(!visited[node]) {
             for(int j = 0; j < this->nodes; j++) {
                 // dodanie wierzcholka do kolejki piorytetowej
-                if(!visited[node] && this->graph[node][j] != 0) {
+                if(!visited[node] && this->graph[node][j] != MAX) {
                     edge.source = node;
                     edge.destination = j;
                     edge.weight = this->graph[node][j];
@@ -351,7 +351,68 @@ void AdjacencyMatrix::dijkstra() {
 }
 
 void AdjacencyMatrix::fordBellman() {
+    // najkrotsze odleglosci
+    int* distances = new int[this->nodes];
 
+    // tutaj przechowywane sa rodzice wierzcholka
+    int * parent = new int[this->nodes];
+
+    // zainicjalizowanie odleglosci i rodzicow dla kazdego wierzcholka
+    for(int i = 0; i < this->nodes; i++) {
+        distances[i] = MAX;
+        parent[i] = -1;
+    }
+
+    // numer wierzcholka startowego
+    int node = this->startNodeSP;
+
+    // ustawienie dystansu do siebie na 0
+    distances[node] = 0;
+
+    // zapisanie wszystkich krawedzi do wektora
+    vector<Edge> edges;
+    for (int i = 0; i < this->nodes; i++) {
+        for(int j = 0; j < this->nodes; j++) {
+            edges.push_back(Edge(i, j, this->graph[i][j]));
+        }
+    }
+
+    for(int i = 1; i < this->nodes - 1; i++) {
+        for(int j = 0; j < edges.size(); j++) {
+            int u = edges[j].source;
+            int v = edges[j].destination;
+            int weight = edges[j].weight;
+
+            if(distances[u] != MAX && distances[v] > distances[u] + weight) {
+                distances[v] = distances[u] + weight;
+                parent[v] = u;
+            }
+        }
+    }
+
+    printf("\n--- Algorytm wykonany na macierzy sasiedztwa ---\n");
+    printf("Odleglosc z wierzcholka %d do pozostalych wierzcholkow:\n", this->startNodeSP);
+    printf("Z:    Do:       Waga:    Sciezka:\n");
+    for(int i = 0; i < this->nodes; i++) {
+        printf("%d  ->  %d        %d        %d ", this->startNodeSP, i, distances[i], this->startNodeSP);
+
+        printPathh(parent, i);
+        cout << endl;
+    }
+
+    // sprawdzenie czy sa ujemne cykle
+    for (auto &edge : edges) {
+        int u = edge.source;
+        int v = edge.destination;
+        int weight = edge.weight;
+        if(distances[u] != MAX && distances[v] > distances[u] + weight) {
+            printf("\nGraf zawiera ujemny cykl.");
+        }
+    }
+
+    delete [] distances;
+    delete [] parent;
+    clear();
 }
 
 void AdjacencyMatrix::clear() {
@@ -359,7 +420,6 @@ void AdjacencyMatrix::clear() {
     this->edges = 0;
     this->density = 0;
     this->startNodeSP = 0;
-    this->priorQueue.empty();
     priorQueue = priority_queue<Edge, vector<Edge>, CompareWeight>();
 
     for(int i = 0; i < this->nodes; i++) {
