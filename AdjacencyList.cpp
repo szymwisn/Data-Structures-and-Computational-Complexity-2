@@ -247,8 +247,57 @@ void AdjacencyList::prim() {
     clear();
 }
 
-void AdjacencyList::kruskal() {
+bool compareWeight(Edge const& e1, Edge const& e2) {
+    return e1.weight < e2.weight;
+}
 
+void AdjacencyList::kruskal() {
+    DisjointSet disjointSet(this->graph.size());
+
+    // tu przechowywana bedzie sumaryczna waga
+    int weights = 0;
+
+    // zapisanie kazdego wierzcholka do struktury przechowujacej krawedzie
+    // latwiej wtedy posortowac
+    vector<Edge> edges;
+    for (auto &i : this->graph) {
+        auto iter = i.begin();
+        while(iter != i.end()) {
+            edges.push_back((*iter));
+            iter++;
+        }
+    }
+
+    // posortowanie wierzcholkow wzgledem wagi - od najmniejszej do najwiekszej
+    sort(edges.begin(), edges.end(), compareWeight);
+
+    printf("\n--- Krawedzie z reprezentacji listowej ---");
+
+    // przechodze po kazdej krawedzi
+    auto iter = edges.begin();
+    while(iter != edges.end()) {
+        int v1 = (*iter).source;
+        int v2 = (*iter).destination;
+        int weight = (*iter).weight;
+
+        // znajduje set dla kazdego z wierzcholkow
+        int set_v1 = disjointSet.findParent(v1);
+        int set_v2 = disjointSet.findParent(v2);
+
+        // sprawdzenie czy jest cykl - czy oba wierzcholki sa w tym samym zbiorze
+        // (cykl wystepuje jesli oba wierzcholki naleza do tego samego zbioru)
+        if(set_v1 != set_v2) {
+            printf("\n%d -> %d (w: %d)    ", v1, v2, weight);
+            weights += weight;
+            disjointSet.makeUnion(set_v1, set_v2);
+        }
+        iter++;
+    }
+
+    // wyswietlenie wag
+    printf("\n\nSuma wag: %d\n", weights);
+
+    clear();
 }
 
 // rekurencyjna funkcja do wyswietlania sciezki do do danego wierzcholka
