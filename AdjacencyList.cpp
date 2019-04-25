@@ -131,7 +131,7 @@ void AdjacencyList::display() {
 void AdjacencyList::display(vector<list<Edge>> g) {
     printf("\n--- Lista sasiedztwa ---");
 
-    // TODO trzeba posortowac, bo zle sie wyswietla undirected
+    // TODO trzeba posortowac, bo zle sie wyswietla po primie
 
     cout << endl;
 
@@ -210,10 +210,10 @@ void AdjacencyList::prim() {
         node = minEdge.destination;
     }
 
-    // wyswietlenie drzewa rozpinajacego
+//    // wyswietlenie drzewa rozpinajacego
     display(this->spanningTree);
-
-    // wyswietlenie wag
+//
+//    // wyswietlenie wag
     printf("\nSuma wag: %d\n", weights);
 
     //czyszczenie
@@ -264,7 +264,7 @@ void AdjacencyList::dijkstra() {
         // usuniecie wierzcholka o najnizszej wadze z kolejki piorytetowej
         priorQueue.pop();
 
-        // itracja o kazdym sasiadujacym wierzcholku
+        // itracja po kazdym sasiadujacym wierzcholku
         auto iter = this->graph[v1].begin();
         while (iter != this->graph[v1].end()) {
             int v2 = (*iter).destination;
@@ -298,7 +298,55 @@ void AdjacencyList::dijkstra() {
 }
 
 void AdjacencyList::fordBellman() {
+    // najkrotsze odleglosci
+    int* distances = new int[this->graph.size()];
 
+    // tutaj przechowywane sa rodzice wierzcholka
+    int * parent = new int[this->graph.size()];
+
+    // zainicjalizowanie odleglosci i rodzicow dla kazdego wierzcholka
+    for(int i = 0; i < this->graph.size(); i++) {
+        distances[i] = 999999999;
+        parent[i] = -1;
+    }
+
+    // numer wierzcholka startowego
+    int node = this->startNodeSP;
+
+    // ustawienie dystansu do siebie na 0
+    distances[node] = 0;
+
+    // TODO do ogarniecia
+
+    for(int i = 0; i < this->graph.size() - 1; i++) {
+        auto iter = this->graph[i].begin();
+
+        while(iter != this->graph[i].end()) {
+
+            int u = (*iter).source;
+            int v = (*iter).destination;
+            int weight = (*iter).weight;
+
+            if(distances[u] != 999999999 && distances[v] > distances[u] + weight) {
+                distances[v] = distances[u] + weight;
+                parent[v] = u;
+            }
+            iter++;
+        }
+    }
+
+    printf("\n--- Algorytm wykonany na liscie sasiedztwa ---\n");
+    printf("Odleglosc z wierzcholka %d do pozostalych wierzcholkow:\n", this->startNodeSP);
+    printf("Z:    Do:       Waga:    Sciezka:\n");
+    for(int i = 0; i < this->graph.size(); i++) {
+        printf("%d  ->  %d        %d        %d ", this->startNodeSP, i, distances[i], this->startNodeSP);
+
+        printPath(parent, i);
+        cout << endl;
+    }
+
+    delete [] distances;
+    delete [] parent;
 }
 
 void AdjacencyList::clear() {

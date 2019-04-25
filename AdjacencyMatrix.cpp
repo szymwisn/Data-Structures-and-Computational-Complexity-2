@@ -150,7 +150,7 @@ void AdjacencyMatrix::display() {
         cout << "[" << i << "] ";
         for(int j = 0; j < this->nodes; j++) {
             if(this->graph[i][j] == 999999999) {
-                cout << " " << "-" << "  ";
+                cout << " -  ";
             } else {
                 cout << " " << this->graph[i][j] << "  ";
             }
@@ -172,7 +172,11 @@ void AdjacencyMatrix::display(int ** g) {
     for(int i = 0; i < this->nodes; i++) {
         cout << "[" << i << "] ";
         for(int j = 0; j < this->nodes; j++) {
-            cout << " " << g[i][j] << "  ";
+            if(g[i][j] == 999999999) {
+                cout << " -  ";
+            } else {
+                cout << " " << g[i][j] << "  ";
+            }
         }
         cout << endl;
     }
@@ -196,21 +200,25 @@ void AdjacencyMatrix::prim() {
 
     for(int k = 0; k < this->nodes; k++) {
         for(int l = 0; l < this->nodes; l++) {
-            this->spanningTree[k][l] = 0;
+            this->spanningTree[k][l] = 999999999;
         }
     }
 
     // numer wierzcholka - zaczynamy od 0
     int node = 0;
 
+    // sumaryczna waga spanning tree
     int weights = 0;
 
     for (int i = 0; i < this->nodes; i++) {
         Edge minEdge;
         Edge edge;
 
+        // jesli wierzcholek wczesniej nie byl odwiedzony to dodaje
+        // go do kolejki piorytetowej
         if(!visited[node]) {
             for(int j = 0; j < this->nodes; j++) {
+                // dodanie wierzcholka do kolejki piorytetowej
                 if(!visited[node] && this->graph[node][j] != 0) {
                     edge.source = node;
                     edge.destination = j;
@@ -219,19 +227,27 @@ void AdjacencyMatrix::prim() {
                 }
             }
 
+            // sciagniecie wierzcholka o najnizszej wadze
             minEdge = priorQueue.top();
+            // usuniecie tego wierzcholka z kolejki
             this->priorQueue.pop();
 
+            // jesli nie byl jeszcze odwiedzony - dodaje go do spanning tree i zwiekszam wage sumaryczna
             if(!visited[minEdge.destination]) {
                 this->spanningTree[minEdge.source][minEdge.destination] = minEdge.weight;
                 this->spanningTree[minEdge.destination][minEdge.source] = minEdge.weight;
                 weights += minEdge.weight;
             }
+
+            // oznaczenie wierzcholka jako odwiedzony
             visited[node] = true;
         } else {
+            // sciagniecie wierzcholka o najnizszej wadze
             minEdge = priorQueue.top();
+            // usuniecie tego wierzcholka z kolejki
             this->priorQueue.pop();
 
+            // jesli nie byl jeszcze odwiedzony - dodaje go do spanning tree i zwiekszam wage sumaryczna
             if(!visited[minEdge.destination]) {
                 this->spanningTree[minEdge.source][minEdge.destination] = minEdge.weight;
                 this->spanningTree[minEdge.destination][minEdge.source] = minEdge.weight;
@@ -239,11 +255,14 @@ void AdjacencyMatrix::prim() {
             }
             i--;
         }
+        // przejscie do kolejnego wierzcholka
         node = minEdge.destination;
     }
 
+    // wyswietlenie drzewa rozpinajacego
     display(this->spanningTree);
 
+    // wyswietlenie wag
     printf("\nSuma wag: %d\n", weights);
 
     //czyszczenie
@@ -277,23 +296,35 @@ void AdjacencyMatrix::dijkstra() {
         distances[i] = 999999999;
     }
 
+    // tutaj przechowywane sa rodzice wierzcholka
     int * parent = new int[this->nodes];
 
+    // zaladowanie pierwszego wierzcholka do kolejki
     this->priorQueue.push(Edge(node, node, 0));
+
+    // ustawienie dystansu do siebie na 0
     distances[node] = 0;
+
+    // pierwszy wierzcholek nie ma zadnego poprzednika w sciezce
     parent[node] = -1;
 
     while(!this->priorQueue.empty()) {
-
+        // pobranie atrybutu source wierzcholka
         int v1 = priorQueue.top().source;
+
+        // usuniecie wierzcholka o najnizszej wadze z kolejki piorytetowej
         priorQueue.pop();
 
+        // itracja po kazdym sasiadujacym wierzcholku
         for(int i = 0; i < this->nodes; i++) {
             int weight = graph[v1][i];
 
+            // jesli jest krotsza droga z wierzcholka v1 do v2 to aktualizuje ja
             if(distances[i] > distances[v1] + weight) {
                 distances[i] = distances[v1] + weight;
                 priorQueue.push(Edge(i, v1, weight));
+
+                // zapisuje rodzica wierzcholka na potrzeby wyswietlenia calej sciezki
                 parent[i] = v1;
             }
         }
