@@ -6,9 +6,9 @@ void Test::testPrim(int nodes, double density) {
 
     for(int i = 0; i < tests; i++) {
         g = al.generate(nodes, density);
-        auto beginning = std::chrono::steady_clock::now();
+        auto beginning = std::chrono::steady_clock::now().time_since_epoch();
         al.prim();
-        auto end = std::chrono::steady_clock::now();
+        auto end = std::chrono::steady_clock::now().time_since_epoch();
         auto time = end - beginning;
         sum += time.count();
     }
@@ -16,16 +16,16 @@ void Test::testPrim(int nodes, double density) {
     sum = 0;
 
     printf("Lista Prim     ");
-    printf("V: %d      D: %f      %d ns", nodes, density, average, tests);
+    printf("V: %d      D: %f      %d ns", nodes, density, average);
 
     cout << endl;
 
     AdjacencyMatrix am(false);
     for(int i = 0; i < tests; i++) {
         am.generate(g);
-        auto beginning = std::chrono::steady_clock::now();
+        auto beginning = std::chrono::steady_clock::now().time_since_epoch();
         am.prim();
-        auto end = std::chrono::steady_clock::now();
+        auto end = std::chrono::steady_clock::now().time_since_epoch();
         auto time = end - beginning;
         sum += time.count();
     }
@@ -33,7 +33,7 @@ void Test::testPrim(int nodes, double density) {
     sum = 0;
 
     printf("Macierz Prim     ");
-    printf("V: %d      D: %f      %d ns", nodes, density, average, tests);
+    printf("V: %d      D: %f      %d ns", nodes, density, average);
 
     cout << endl;
 
@@ -46,9 +46,9 @@ void Test::testKruskal(int nodes, double density) {
 
     for(int i = 0; i < tests; i++) {
         g = al.generate(nodes, density);
-        auto beginning = std::chrono::steady_clock::now();
+        auto beginning = std::chrono::steady_clock::now().time_since_epoch();
         al.kruskal();
-        auto end = std::chrono::steady_clock::now();
+        auto end = std::chrono::steady_clock::now().time_since_epoch();
         auto time = end - beginning;
         sum += time.count();
     }
@@ -56,16 +56,16 @@ void Test::testKruskal(int nodes, double density) {
     sum = 0;
 
     printf("Lista Kruskal     ");
-    printf("V: %d      D: %f      %d ns", nodes, density, average, tests);
+    printf("V: %d      D: %f      %d ns", nodes, density, average);
 
     cout << endl;
 
     AdjacencyMatrix am(false);
     for(int i = 0; i < tests; i++) {
         am.generate(g);
-        auto beginning = std::chrono::steady_clock::now();
+        auto beginning = std::chrono::steady_clock::now().time_since_epoch();
         am.kruskal();
-        auto end = std::chrono::steady_clock::now();
+        auto end = std::chrono::steady_clock::now().time_since_epoch();
         auto time = end - beginning;
         sum += time.count();
     }
@@ -73,7 +73,7 @@ void Test::testKruskal(int nodes, double density) {
     sum = 0;
 
     printf("Macierz Kurskal     ");
-    printf("V: %d      D: %f      %d ns", nodes, density, average, tests);
+    printf("V: %d      D: %f      %d ns", nodes, density, average);
 
     cout << endl;
 
@@ -86,9 +86,9 @@ void Test::testDijkstra(int nodes, double density) {
 
     for(int i = 0; i < tests; i++) {
         g = al.generate(nodes, density);
-        auto beginning = std::chrono::steady_clock::now();
+        auto beginning = std::chrono::steady_clock::now().time_since_epoch();
         al.dijkstra();
-        auto end = std::chrono::steady_clock::now();
+        auto end = std::chrono::steady_clock::now().time_since_epoch();
         auto time = end - beginning;
         sum += time.count();
     }
@@ -96,16 +96,16 @@ void Test::testDijkstra(int nodes, double density) {
     sum = 0;
 
     printf("Lista Dijkstra     ");
-    printf("V: %d      D: %f      %d ns", nodes, density, average, tests);
+    printf("V: %d      D: %f      %d ns", nodes, density, average);
 
     cout << endl;
 
     AdjacencyMatrix am(true);
     for(int i = 0; i < tests; i++) {
         am.generate(g);
-        auto beginning = std::chrono::steady_clock::now();
+        auto beginning = std::chrono::steady_clock::now().time_since_epoch();
         am.dijkstra();
-        auto end = std::chrono::steady_clock::now();
+        auto end = std::chrono::steady_clock::now().time_since_epoch();
         auto time = end - beginning;
         sum += time.count();
     }
@@ -113,7 +113,7 @@ void Test::testDijkstra(int nodes, double density) {
     sum = 0;
 
     printf("Macierz Dijkstra     ");
-    printf("V: %d      D: %f      %d ns", nodes, density, average, tests);
+    printf("V: %d      D: %f      %d ns", nodes, density, average);
 
     cout << endl;
 
@@ -126,9 +126,9 @@ void Test::testFordBellman(int nodes, double density) {
 
     for(int i = 0; i < tests; i++) {
         g = al.generate(nodes, density);
-        auto beginning = std::chrono::steady_clock::now();
+        auto beginning = std::chrono::steady_clock::now().time_since_epoch();
         al.fordBellman();
-        auto end = std::chrono::steady_clock::now();
+        auto end = std::chrono::steady_clock::now().time_since_epoch();
         auto time = end - beginning;
         sum += time.count();
     }
@@ -136,16 +136,16 @@ void Test::testFordBellman(int nodes, double density) {
     sum = 0;
 
     printf("Lista Ford-Bellman     ");
-    printf("V: %d      D: %f      %d ns", nodes, density, average, tests);
+    printf("V: %d      D: %f      %d ns", nodes, density, average);
 
     cout << endl;
 
     AdjacencyMatrix am(true);
     for(int i = 0; i < tests; i++) {
         am.generate(g);
-        auto beginning = std::chrono::steady_clock::now();
+        auto beginning = std::chrono::steady_clock::now().time_since_epoch();
         am.fordBellman();
-        auto end = std::chrono::steady_clock::now();
+        auto end = std::chrono::steady_clock::now().time_since_epoch();
         auto time = end - beginning;
         sum += time.count();
     }
@@ -153,7 +153,7 @@ void Test::testFordBellman(int nodes, double density) {
     sum = 0;
 
     printf("Macierz Ford-Bellman     ");
-    printf("V: %d      D: %f      %d ns", nodes, density, average, tests);
+    printf("V: %d      D: %f      %d ns", nodes, density, average);
 
     cout << endl;
 

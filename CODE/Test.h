@@ -14,7 +14,7 @@ public:
     void testFordBellman(int nodes, double density);
 
 private:
-    const int tests = 1000;
+    const int tests = 100;
     int average = 0;
     int sum = 0;
 };

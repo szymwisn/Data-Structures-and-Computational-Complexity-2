@@ -16,7 +16,7 @@ int main() {
         cout << "==== MENU GLOWNE ===" << endl;
         cout << "1. wyznaczanie minimalnego drzewa rozpinającego (MST)" << endl;
         cout << "2. wyznaczanie najkrótszej ścieżki w grafie" << endl;
-        cout << "3. testy" << endl;
+        cout << "3. testy (wykomentowac w kodzie wypisywanie rezultatow operacji)" << endl;
         cout << "0. Wyjscie" << endl;
         cout << "Podaj opcje:";
         cin >> option;
