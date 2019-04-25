@@ -26,7 +26,6 @@ public:
 
     // glowne funkcje
     void loadFromFile(string fileName);
-    void generate(int nodes, double density);
     void generate(vector<list<Edge>> g);
     void addEdge(int src, int dest, int weight);
     void display();
