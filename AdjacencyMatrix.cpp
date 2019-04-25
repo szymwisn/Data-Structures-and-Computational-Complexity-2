@@ -36,7 +36,7 @@ void AdjacencyMatrix::loadFromFile(string fileName) {
 
         for(int k = 0; k < this->nodes; k++) {
             for(int l = 0; l < this->nodes; l++) {
-                this->graph[k][l] = 999999999;
+                this->graph[k][l] = MAX;
             }
         }
 
@@ -67,9 +67,6 @@ void AdjacencyMatrix::loadFromFile(string fileName) {
 }
 
 void AdjacencyMatrix::generate(int nodes, double density) {
-
-    //TODO powinno byc to samo co w liscie sasiedztwa xd
-
     clear();
 
     if(directed) {
@@ -88,7 +85,7 @@ void AdjacencyMatrix::generate(int nodes, double density) {
 
     for(int k = 0; k < this->nodes; k++) {
         for(int l = 0; l < this->nodes; l++) {
-            this->graph[k][l] = 0;
+            this->graph[k][l] = MAX;
         }
     }
 
@@ -136,6 +133,37 @@ void AdjacencyMatrix::generate(int nodes, double density) {
     delete [] visited;
 }
 
+// generuje graf bazujac na reprezentacji listowej
+void AdjacencyMatrix::generate(vector<list<Edge>> g) {
+    clear();
+
+    this->nodes = g.size();
+
+    this->graph = new int * [this->nodes];
+
+    for(int k = 0; k < this->nodes; k++) {
+        this->graph[k] = new int [this->nodes];
+    }
+
+    for(int k = 0; k < this->nodes; k++) {
+        for(int l = 0; l < this->nodes; l++) {
+            this->graph[k][l] = MAX;
+        }
+    }
+
+    for(int i = 0; i < g.size(); i++) {
+        Edge edge;
+        auto iter = g[i].begin();
+        while(iter != g[i].end()) {
+            edge.source = (*iter).source;
+            edge.destination = (*iter).destination;
+            edge.weight = (*iter).weight;
+            addEdge(edge.source, edge.destination, edge.weight);
+            iter++;
+        }
+    }
+}
+
 void AdjacencyMatrix::display() {
     printf("\n--- Macierz sasiedztwa ---\n");
 
@@ -149,7 +177,7 @@ void AdjacencyMatrix::display() {
     for(int i = 0; i < this->nodes; i++) {
         cout << "[" << i << "] ";
         for(int j = 0; j < this->nodes; j++) {
-            if(this->graph[i][j] == 999999999) {
+            if(this->graph[i][j] == MAX) {
                 cout << " -  ";
             } else {
                 cout << " " << this->graph[i][j] << "  ";
@@ -172,7 +200,7 @@ void AdjacencyMatrix::display(int ** g) {
     for(int i = 0; i < this->nodes; i++) {
         cout << "[" << i << "] ";
         for(int j = 0; j < this->nodes; j++) {
-            if(g[i][j] == 999999999) {
+            if(g[i][j] == MAX) {
                 cout << " -  ";
             } else {
                 cout << " " << g[i][j] << "  ";
@@ -200,7 +228,7 @@ void AdjacencyMatrix::prim() {
 
     for(int k = 0; k < this->nodes; k++) {
         for(int l = 0; l < this->nodes; l++) {
-            this->spanningTree[k][l] = 999999999;
+            this->spanningTree[k][l] = MAX;
         }
     }
 
@@ -293,7 +321,7 @@ void AdjacencyMatrix::dijkstra() {
     // zainicjalizowanie odleglosci dla kazdego wierzcholka
     int* distances = new int[this->nodes];
     for(int i = 0; i < this->nodes; i++) {
-        distances[i] = 999999999;
+        distances[i] = MAX;
     }
 
     // tutaj przechowywane sa rodzice wierzcholka

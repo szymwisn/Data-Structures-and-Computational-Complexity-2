@@ -28,6 +28,7 @@ void Menu::menuMST() {
     // Dla algorytmow MST graf jest nieskierowany
     AdjacencyList al(false);
     AdjacencyMatrix am(false);
+    vector<list<Edge>> g;
 
     char opt;
     string fileName;
@@ -57,10 +58,10 @@ void Menu::menuMST() {
 
                 cout << " podaj gestosc:";
                 cin >> density;
-                al.generate(value, density);
+                g = al.generate(value, density);
                 al.display();
 
-                am.generate(value, density);
+                am.generate(g);
                 am.display();
                 break;
 
@@ -87,6 +88,7 @@ void Menu::menuShortestPath() {
     // Dla algorytmow SP graf jest skierowany
     AdjacencyList al(true);
     AdjacencyMatrix am(true);
+    vector<list<Edge>> g;
 
     char opt;
     string fileName;
@@ -116,10 +118,10 @@ void Menu::menuShortestPath() {
                 cout << " podaj gestosc:";
                 cin >> density;
 
-                al.generate(value, density);
+                g = al.generate(value, density);
                 al.display();
 
-                am.generate(value, density);
+                am.generate(g);
                 am.display();
                 break;
 

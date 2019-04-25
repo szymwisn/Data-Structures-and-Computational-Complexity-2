@@ -78,19 +78,19 @@ void Test::runTests() {
     int sizes[5] = {20, 30, 50, 80, 100};
 
     for(int i = 0; i < 5; i++) {
-        testPrim(sizes[i], 0.25);
+        testDijkstra(sizes[i], 0.25);
     }
 
     for(int i = 0; i < 5; i++) {
-        testPrim(sizes[i], 0.50);
+        testDijkstra(sizes[i], 0.50);
 
     }
 
     for(int i = 0; i < 5; i++) {
-        testPrim(sizes[i], 0.75);
+        testDijkstra(sizes[i], 0.75);
     }
 
     for(int i = 0; i < 5; i++) {
-        testPrim(sizes[i], 0.99);
+        testDijkstra(sizes[i], 0.99);
     }
 }

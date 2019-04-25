@@ -3,34 +3,12 @@
 
 #include<string>
 #include<iostream>
-#include <vector>
-#include <list>
-#include <queue>
-#include <algorithm>
 #include <fstream>
+#include "Edge.h"
 
 using namespace std;
 
 class AdjacencyList {
-    struct Edge {
-        int source;
-        int destination;
-        int weight;
-
-        explicit Edge(int src = 0, int dest = 0, int weight = 0) {
-            this->source = src;
-            this->destination = dest;
-            this->weight = weight;
-        }
-    };
-
-    struct CompareWeight {
-        bool operator()(Edge const& e1, Edge const& e2) {
-            return e1.weight > e2.weight;
-        }
-    };
-
-
     vector<list<Edge>> graph;
     vector<list<Edge>> spanningTree;
     priority_queue<Edge, vector<Edge>, CompareWeight> priorQueue;
@@ -39,6 +17,7 @@ class AdjacencyList {
     int edges; // ilosc krawedzi
     double density;
     int startNodeSP;
+    const int MAX = 999999999;
 
 public:
     // konstruktor i destruktor
@@ -47,7 +26,7 @@ public:
 
     // glowne funkcje
     void loadFromFile(string fileName);
-    void generate(int nodes, double density);
+    vector<list<Edge>> generate(int nodes, double density);
     void addEdge(int src, int dest, int weight);
     void display();
     void display(vector<list<Edge>> g);

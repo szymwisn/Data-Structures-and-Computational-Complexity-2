@@ -54,7 +54,7 @@ void AdjacencyList::loadFromFile(string fileName) {
     }
 }
 
-void AdjacencyList::generate(int nodes, double density) {
+vector<list<Edge>> AdjacencyList::generate(int nodes, double density) {
     clear();
 
     if(directed) {
@@ -112,6 +112,8 @@ void AdjacencyList::generate(int nodes, double density) {
     }
 
     delete [] visited;
+
+    return this->graph;
 }
 
 void AdjacencyList::display() {
@@ -242,7 +244,7 @@ void AdjacencyList::dijkstra() {
     // zainicjalizowanie odleglosci dla kazdego wierzcholka
     int* distances = new int[this->graph.size()];
     for(int i = 0; i < this->graph.size(); i++) {
-        distances[i] = 999999999;
+        distances[i] = MAX;
     }
 
     // tutaj przechowywane sa rodzice wierzcholka
@@ -306,7 +308,7 @@ void AdjacencyList::fordBellman() {
 
     // zainicjalizowanie odleglosci i rodzicow dla kazdego wierzcholka
     for(int i = 0; i < this->graph.size(); i++) {
-        distances[i] = 999999999;
+        distances[i] = MAX;
         parent[i] = -1;
     }
 
@@ -327,7 +329,7 @@ void AdjacencyList::fordBellman() {
             int v = (*iter).destination;
             int weight = (*iter).weight;
 
-            if(distances[u] != 999999999 && distances[v] > distances[u] + weight) {
+            if(distances[u] != MAX && distances[v] > distances[u] + weight) {
                 distances[v] = distances[u] + weight;
                 parent[v] = u;
             }
