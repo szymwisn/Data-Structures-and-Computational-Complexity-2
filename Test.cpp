@@ -2,8 +2,10 @@
 
 void Test::testPrim(int nodes, double density) {
     AdjacencyList al(false);
+    vector<list<Edge>> g;
+
     for(int i = 0; i < tests; i++) {
-        al.generate(nodes, density);
+        g = al.generate(nodes, density);
         auto beginning = std::chrono::steady_clock::now();
         al.prim();
         auto end = std::chrono::steady_clock::now();
@@ -20,7 +22,7 @@ void Test::testPrim(int nodes, double density) {
 
     AdjacencyMatrix am(false);
     for(int i = 0; i < tests; i++) {
-        am.generate(nodes, density);
+        am.generate(g);
         auto beginning = std::chrono::steady_clock::now();
         am.prim();
         auto end = std::chrono::steady_clock::now();
@@ -38,8 +40,10 @@ void Test::testPrim(int nodes, double density) {
 
 void Test::testDijkstra(int nodes, double density) {
     AdjacencyList al(true);
+    vector<list<Edge>> g;
+
     for(int i = 0; i < tests; i++) {
-        al.generate(nodes, density);
+        g = al.generate(nodes, density);
         auto beginning = std::chrono::steady_clock::now();
         al.dijkstra();
         auto end = std::chrono::steady_clock::now();
@@ -56,7 +60,7 @@ void Test::testDijkstra(int nodes, double density) {
 
     AdjacencyMatrix am(true);
     for(int i = 0; i < tests; i++) {
-        am.generate(nodes, density);
+        am.generate(g);
         auto beginning = std::chrono::steady_clock::now();
         am.dijkstra();
         auto end = std::chrono::steady_clock::now();
@@ -78,19 +82,19 @@ void Test::runTests() {
     int sizes[5] = {20, 30, 50, 80, 100};
 
     for(int i = 0; i < 5; i++) {
-        testDijkstra(sizes[i], 0.25);
+        testPrim(sizes[i], 0.25);
     }
 
     for(int i = 0; i < 5; i++) {
-        testDijkstra(sizes[i], 0.50);
+        testPrim(sizes[i], 0.50);
 
     }
 
     for(int i = 0; i < 5; i++) {
-        testDijkstra(sizes[i], 0.75);
+        testPrim(sizes[i], 0.75);
     }
 
     for(int i = 0; i < 5; i++) {
-        testDijkstra(sizes[i], 0.99);
+        testPrim(sizes[i], 0.99);
     }
 }

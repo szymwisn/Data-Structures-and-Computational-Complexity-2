@@ -121,7 +121,7 @@ void AdjacencyMatrix::display() {
 }
 
 void AdjacencyMatrix::display(int ** g) {
-    printf("\n--- Macierz sasiedztwa ---\n");
+    printf("\n--- Krawedzie w formie tablicy ---\n");
 
     cout << "    ";
     for(int i = 0; i < this->nodes; i++) {
@@ -228,11 +228,7 @@ void AdjacencyMatrix::prim() {
 
     //czyszczenie
     delete [] visited;
-    this->priorQueue.empty();
-    for(int i = 0; i < this->nodes; i++) {
-        delete [] this->spanningTree[i];
-    }
-    delete [] spanningTree;
+    clear();
 }
 
 void AdjacencyMatrix::kruskal() {
@@ -303,7 +299,7 @@ void AdjacencyMatrix::dijkstra() {
 
     delete [] distances;
     delete [] parent;
-    this->priorQueue.empty();
+    clear();
 }
 
 void AdjacencyMatrix::fordBellman() {

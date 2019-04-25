@@ -158,18 +158,15 @@ void AdjacencyList::display() {
 }
 
 void AdjacencyList::display(vector<list<Edge>> g) {
-    printf("\n--- Lista sasiedztwa ---");
-
-    // TODO trzeba posortowac, bo zle sie wyswietla po primie
+    printf("\n--- Krawedzie ---");
 
     cout << endl;
 
     for(int i = 0; i < g.size(); i++) {
-        printf("Node[%d]:    ", i);
         for (auto &iter : g[i]) {
             printf("%d -> %d (w: %d)    ", iter.source, iter.destination, iter.weight);
+            cout << endl;
         }
-        cout << endl;
     }
 }
 
@@ -239,16 +236,15 @@ void AdjacencyList::prim() {
         node = minEdge.destination;
     }
 
-//    // wyswietlenie drzewa rozpinajacego
+    // wyswietlenie drzewa rozpinajacego
     display(this->spanningTree);
-//
-//    // wyswietlenie wag
+
+    // wyswietlenie wag
     printf("\nSuma wag: %d\n", weights);
 
     //czyszczenie
     delete [] visited;
-    this->priorQueue.empty();
-    this->spanningTree.clear();
+    clear();
 }
 
 void AdjacencyList::kruskal() {
@@ -323,7 +319,7 @@ void AdjacencyList::dijkstra() {
 
     delete [] distances;
     delete [] parent;
-    this->priorQueue.empty();
+    clear();
 }
 
 void AdjacencyList::fordBellman() {
@@ -376,9 +372,11 @@ void AdjacencyList::fordBellman() {
 
     delete [] distances;
     delete [] parent;
+    clear();
 }
 
 void AdjacencyList::clear() {
+    this->graph.resize(0);
     this->nodes = 0;
     this->edges = 0;
     this->density = 0;
