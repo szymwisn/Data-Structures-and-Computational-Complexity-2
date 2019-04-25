@@ -1,3 +1,0 @@
-/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/cmake-build-debug/CMakeFiles/Data_Structures_and_Computational_Complexity_2.dir
-/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/cmake-build-debug/CMakeFiles/edit_cache.dir
