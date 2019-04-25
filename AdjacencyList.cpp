@@ -183,7 +183,7 @@ void AdjacencyList::prim() {
     int node = 0;
 
     // ustawienie rozmiaru wektora zawierajacego drzewo rozpinajace
-    this->spanningTree.resize(this->nodes);
+    this->spanningTree.resize(this->graph.size());
 
     // sumaryczna waga spanning tree
     int weights = 0;
@@ -194,10 +194,10 @@ void AdjacencyList::prim() {
         // jesli wierzcholek wczesniej nie byl odwiedzony to dodaje
         // go do kolejki piorytetowej
         if(!visited[node]) {
-            auto iter = graph[node].begin();
+            auto iter = this->graph[node].begin();
 
             // dodanie wierzcholka do kolejki piorytetowej
-            while(iter != graph[node].end()) {
+            while(iter != this->graph[node].end()) {
                     if(!visited[(*iter).destination]) {
                         priorQueue.push((*iter));
                     }
@@ -425,14 +425,16 @@ void AdjacencyList::fordBellman() {
 }
 
 void AdjacencyList::clear() {
-    this->graph.resize(0);
     this->nodes = 0;
     this->edges = 0;
     this->density = 0;
     this->startNodeSP = 0;
     this->graph.clear();
+    this->graph.resize(0);
     this->spanningTree.clear();
+    this->spanningTree.resize(0);
     this->priorQueue.empty();
+    priorQueue = priority_queue<Edge, vector<Edge>, CompareWeight>();
 }
 
 void AdjacencyList::addEdge(int src, int dest, int weight) {

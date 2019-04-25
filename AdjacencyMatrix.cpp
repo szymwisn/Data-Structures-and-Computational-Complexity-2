@@ -283,11 +283,11 @@ void AdjacencyMatrix::kruskal() {
     clear();
 }
 
-void printPathd(int parent[], int i) {
+void printPathh(int *parent, int i) {
     if(parent[i] == -1) {
         return;
     }
-    printPathd(parent, parent[i]);
+    printPathh(parent, parent[i]);
     printf("-> %d ", i);
 }
 
@@ -341,7 +341,7 @@ void AdjacencyMatrix::dijkstra() {
     for(int i = 0; i < this->nodes; i++) {
         printf("%d  ->  %d        %d        %d ", this->startNodeSP, i, distances[i], this->startNodeSP);
 
-        printPathd(parent, i);
+        printPathh(parent, i);
         cout << endl;
     }
 
@@ -360,6 +360,7 @@ void AdjacencyMatrix::clear() {
     this->density = 0;
     this->startNodeSP = 0;
     this->priorQueue.empty();
+    priorQueue = priority_queue<Edge, vector<Edge>, CompareWeight>();
 
     for(int i = 0; i < this->nodes; i++) {
         delete [] this->graph[i];
