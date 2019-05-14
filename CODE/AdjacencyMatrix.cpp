@@ -60,6 +60,13 @@ void AdjacencyMatrix::loadFromFile(string fileName) {
             addEdge(edge.source, edge.destination, edge.weight);
         }
 
+        // zapisanie wszystkich krawedzi do wektora
+        for (int i = 0; i < this->nodes; i++) {
+            for(int j = 0; j < this->nodes; j++) {
+                this->allEdges.push_back(Edge(i, j, this->graph[i][j]));
+            }
+        }
+
         file.close();
     } else {
         cout << "Nie udalo sie otworzyc pliku." << endl;
@@ -93,6 +100,13 @@ void AdjacencyMatrix::generate(vector<list<Edge>> g) {
             edge.weight = (*iter).weight;
             addEdge(edge.source, edge.destination, edge.weight);
             iter++;
+        }
+    }
+
+    // zapisanie wszystkich krawedzi do wektora
+    for (int i = 0; i < this->nodes; i++) {
+        for(int j = 0; j < this->nodes; j++) {
+            this->allEdges.push_back(Edge(i, j, this->graph[i][j]));
         }
     }
 }
@@ -371,20 +385,12 @@ void AdjacencyMatrix::fordBellman() {
 
     // ustawienie dystansu do siebie na 0
     distances[node] = 0;
-    
-    // zapisanie wszystkich krawedzi do wektora
-    vector<Edge> edges;
-    for (int i = 0; i < this->nodes; i++) {
-        for(int j = 0; j < this->nodes; j++) {
-            edges.push_back(Edge(i, j, this->graph[i][j]));
-        }
-    }
 
     for(int i = 1; i < this->nodes - 1; i++) {
-        for(int j = 0; j < edges.size(); j++) {
-            int u = edges[j].source;
-            int v = edges[j].destination;
-            int weight = edges[j].weight;
+        for(int j = 0; j < this->allEdges.size(); j++) {
+            int u = this->allEdges[j].source;
+            int v = this->allEdges[j].destination;
+            int weight = this->allEdges[j].weight;
 
             if(distances[u] != MAX && distances[v] > distances[u] + weight) {
                 distances[v] = distances[u] + weight;
@@ -404,7 +410,7 @@ void AdjacencyMatrix::fordBellman() {
     }
 
     // sprawdzenie czy sa ujemne cykle
-    for (auto &edge : edges) {
+    for (auto &edge : allEdges) {
         int u = edge.source;
         int v = edge.destination;
         int weight = edge.weight;
@@ -423,6 +429,8 @@ void AdjacencyMatrix::clear() {
     this->edges = 0;
     this->density = 0;
     this->startNodeSP = 0;
+    this->allEdges.clear();
+    this->allEdges.resize(0);
     priorQueue = priority_queue<Edge, vector<Edge>, CompareWeight>();
 
     for(int i = 0; i < this->nodes; i++) {

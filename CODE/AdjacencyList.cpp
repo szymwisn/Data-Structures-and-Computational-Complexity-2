@@ -48,6 +48,15 @@ void AdjacencyList::loadFromFile(string fileName) {
             addEdge(edge.source, edge.destination, edge.weight);
         }
 
+        // zapisanie wszystkich krawedzi do wektora
+        for (auto &i : this->graph) {
+            auto iter = i.begin();
+            while(iter != i.end()) {
+                this->allEdges.push_back((*iter));
+                iter++;
+            }
+        }
+
         file.close();
     } else {
         cout << "Nie udalo sie otworzyc pliku." << endl;
@@ -134,6 +143,15 @@ vector<list<Edge>> AdjacencyList::generate(int nodes, double density) {
         exists[edge.source][edge.destination] = true;
         if(!directed) {
             exists[edge.destination][edge.source] = true;
+        }
+    }
+
+    // zapisanie wszystkich krawedzi do wektora
+    for (auto &i : this->graph) {
+        auto iter = i.begin();
+        while(iter != i.end()) {
+            this->allEdges.push_back((*iter));
+            iter++;
         }
     }
 
@@ -393,18 +411,8 @@ void AdjacencyList::fordBellman() {
     // ustawienie dystansu do siebie na 0
     distances[node] = 0;
 
-    // zapisanie wszystkich krawedzi do wektora
-    vector<Edge> edges;
-    for (auto &i : this->graph) {
-        auto iter = i.begin();
-        while(iter != i.end()) {
-            edges.push_back((*iter));
-            iter++;
-        }
-    }
-
     for(int i = 1; i < this->graph.size() - 1; i++) {
-        for (auto &edge : edges) {
+        for (auto &edge : allEdges) {
             int u = edge.source;
             int v = edge.destination;
             int weight = edge.weight;
@@ -427,7 +435,7 @@ void AdjacencyList::fordBellman() {
     }
 
     // sprawdzenie czy sa ujemne cykle
-    for (auto &edge : edges) {
+    for (auto &edge : allEdges) {
         int u = edge.source;
         int v = edge.destination;
         int weight = edge.weight;
@@ -448,6 +456,8 @@ void AdjacencyList::clear() {
     this->startNodeSP = 0;
     this->graph.clear();
     this->graph.resize(0);
+    this->allEdges.clear();
+    this->allEdges.resize(0);
     this->spanningTree.clear();
     this->spanningTree.resize(0);
     priorQueue = priority_queue<Edge, vector<Edge>, CompareWeight>();

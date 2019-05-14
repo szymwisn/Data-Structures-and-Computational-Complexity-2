@@ -6,6 +6,22 @@
 
 #IncludeRegexTransform: 
 
+/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/AdjacencyList.cpp
+AdjacencyList.h
+/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/AdjacencyList.h
+
+/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/AdjacencyList.h
+string
+-
+iostream
+-
+fstream
+-
+Edge.h
+/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/Edge.h
+DisjointSet.h
+/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/DisjointSet.h
+
 /home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/AdjacencyMatrix.cpp
 AdjacencyMatrix.h
 /home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/AdjacencyMatrix.h

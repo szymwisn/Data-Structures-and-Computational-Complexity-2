@@ -13,6 +13,7 @@ class AdjacencyMatrix {
     int **graph;
     int **spanningTree;
     priority_queue<Edge, vector<Edge>, CompareWeight> priorQueue;
+    vector<Edge> allEdges;
     bool directed;  // 0 - MST, 1 - SP
     int nodes;  // ilosc wezlow
     int edges; // ilosc krawedzi
