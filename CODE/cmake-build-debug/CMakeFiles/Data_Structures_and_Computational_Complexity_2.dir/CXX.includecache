@@ -6,7 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/AdjacencyList.h
+/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/AdjacencyMatrix.cpp
+AdjacencyMatrix.h
+/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/AdjacencyMatrix.h
+
+/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/AdjacencyMatrix.h
 string
 -
 iostream
@@ -14,25 +18,13 @@ iostream
 fstream
 -
 Edge.h
-/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/Edge.h
+/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/Edge.h
 DisjointSet.h
-/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/DisjointSet.h
+/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/DisjointSet.h
 
-/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/AdjacencyMatrix.h
-string
--
-iostream
--
-fstream
--
-Edge.h
-/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/Edge.h
-DisjointSet.h
-/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/DisjointSet.h
+/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/DisjointSet.h
 
-/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/DisjointSet.h
-
-/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/Edge.h
+/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/Edge.h
 vector
 -
 list
@@ -41,34 +33,4 @@ queue
 -
 algorithm
 -
-
-/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/Menu.h
-string
--
-iostream
--
-AdjacencyList.h
-/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/AdjacencyList.h
-AdjacencyMatrix.h
-/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/AdjacencyMatrix.h
-
-/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/Test.cpp
-Test.h
-/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/Test.h
-
-/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/Test.h
-chrono
--
-AdjacencyList.h
-/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/AdjacencyList.h
-AdjacencyMatrix.h
-/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/AdjacencyMatrix.h
-
-/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/main.cpp
-iostream
--
-Menu.h
-/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/Menu.h
-Test.h
-/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/Test.h
 

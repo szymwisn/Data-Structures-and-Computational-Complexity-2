@@ -8,28 +8,28 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug"/>
+				<Option working_dir="/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug"/>
+				<Option working_dir="/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Data_Structures_and_Computational_Complexity_2">
-				<Option output="/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Data_Structures_and_Computational_Complexity_2" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug"/>
+				<Option output="/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Data_Structures_and_Computational_Complexity_2" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -44,15 +44,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Makefile&quot;  VERBOSE=1 Data_Structures_and_Computational_Complexity_2"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Makefile&quot;  VERBOSE=1 Data_Structures_and_Computational_Complexity_2"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Data_Structures_and_Computational_Complexity_2/fast">
-				<Option output="/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Data_Structures_and_Computational_Complexity_2" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug"/>
+				<Option output="/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Data_Structures_and_Computational_Complexity_2" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -67,63 +67,63 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Makefile&quot;  VERBOSE=1 Data_Structures_and_Computational_Complexity_2/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Makefile&quot;  VERBOSE=1 Data_Structures_and_Computational_Complexity_2/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug"/>
+				<Option working_dir="/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/AdjacencyList.cpp">
+		<Unit filename="/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/AdjacencyList.cpp">
 			<Option target="Data_Structures_and_Computational_Complexity_2"/>
 		</Unit>
-		<Unit filename="/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/AdjacencyList.h">
+		<Unit filename="/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/AdjacencyList.h">
 			<Option target="Data_Structures_and_Computational_Complexity_2"/>
 		</Unit>
-		<Unit filename="/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/AdjacencyMatrix.cpp">
+		<Unit filename="/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/AdjacencyMatrix.cpp">
 			<Option target="Data_Structures_and_Computational_Complexity_2"/>
 		</Unit>
-		<Unit filename="/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/AdjacencyMatrix.h">
+		<Unit filename="/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/AdjacencyMatrix.h">
 			<Option target="Data_Structures_and_Computational_Complexity_2"/>
 		</Unit>
-		<Unit filename="/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/DisjointSet.cpp">
+		<Unit filename="/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/DisjointSet.cpp">
 			<Option target="Data_Structures_and_Computational_Complexity_2"/>
 		</Unit>
-		<Unit filename="/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/DisjointSet.h">
+		<Unit filename="/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/DisjointSet.h">
 			<Option target="Data_Structures_and_Computational_Complexity_2"/>
 		</Unit>
-		<Unit filename="/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/Edge.cpp">
+		<Unit filename="/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/Edge.cpp">
 			<Option target="Data_Structures_and_Computational_Complexity_2"/>
 		</Unit>
-		<Unit filename="/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/Edge.h">
+		<Unit filename="/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/Edge.h">
 			<Option target="Data_Structures_and_Computational_Complexity_2"/>
 		</Unit>
-		<Unit filename="/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/Menu.cpp">
+		<Unit filename="/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/Menu.cpp">
 			<Option target="Data_Structures_and_Computational_Complexity_2"/>
 		</Unit>
-		<Unit filename="/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/Menu.h">
+		<Unit filename="/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/Menu.h">
 			<Option target="Data_Structures_and_Computational_Complexity_2"/>
 		</Unit>
-		<Unit filename="/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/Test.cpp">
+		<Unit filename="/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/Test.cpp">
 			<Option target="Data_Structures_and_Computational_Complexity_2"/>
 		</Unit>
-		<Unit filename="/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/Test.h">
+		<Unit filename="/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/Test.h">
 			<Option target="Data_Structures_and_Computational_Complexity_2"/>
 		</Unit>
-		<Unit filename="/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/main.cpp">
+		<Unit filename="/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/main.cpp">
 			<Option target="Data_Structures_and_Computational_Complexity_2"/>
 		</Unit>
-		<Unit filename="/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/CMakeLists.txt">
+		<Unit filename="/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

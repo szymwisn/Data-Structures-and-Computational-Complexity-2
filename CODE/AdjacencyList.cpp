@@ -198,9 +198,9 @@ void AdjacencyList::prim() {
 
             // dodanie wierzcholka do kolejki piorytetowej
             while(iter != this->graph[node].end()) {
-                    if(!visited[node] && (*iter).weight != MAX) {
-                        priorQueue.push((*iter));
-                    }
+                if(!visited[node] && (*iter).weight != MAX) {
+                    priorQueue.push((*iter));
+                }
                 iter++;
             }
 
@@ -310,6 +310,8 @@ void printPath(int parent[], int i) {
 }
 
 void AdjacencyList::dijkstra() {
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> Q;
+
     // numer wierzcholka startowego
     int node = this->startNodeSP;
 
@@ -323,7 +325,7 @@ void AdjacencyList::dijkstra() {
     int * parent = new int[this->graph.size()];
 
     // zaladowanie pierwszego wierzcholka do kolejki
-    this->priorQueue.push(Edge(node, node, 0));
+    Q.push(make_pair(0, node));
 
     // ustawienie dystansu do siebie na 0
     distances[node] = 0;
@@ -331,12 +333,12 @@ void AdjacencyList::dijkstra() {
     // pierwszy wierzcholek nie ma zadnego poprzednika w sciezce
     parent[node] = -1;
 
-    while(!this->priorQueue.empty()) {
+    while(!Q.empty()) {
         // pobranie atrybutu source wierzcholka
-        int v1 = priorQueue.top().source;
+        int v1 = Q.top().second;
 
         // usuniecie wierzcholka o najnizszej wadze z kolejki piorytetowej
-        priorQueue.pop();
+        Q.pop();
 
         // itracja po kazdym sasiadujacym wierzcholku
         auto iter = this->graph[v1].begin();
@@ -347,7 +349,7 @@ void AdjacencyList::dijkstra() {
             // jesli jest krotsza droga z wierzcholka v1 do v2 to aktualizuje ja
             if(distances[v2] > distances[v1] + weight) {
                 distances[v2] = distances[v1] + weight;
-                priorQueue.push(Edge(v2, v1, weight));
+                Q.push(make_pair(distances[v2], v2));
 
                 // zapisuje rodzica wierzcholka na potrzeby wyswietlenia calej sciezki
                 parent[v2] = v1;
@@ -360,14 +362,15 @@ void AdjacencyList::dijkstra() {
     printf("Odleglosc z wierzcholka %d do pozostalych wierzcholkow:\n", this->startNodeSP);
     printf("Z:    Do:       Waga:    Sciezka:\n");
     for(int i = 0; i < this->graph.size(); i++) {
-            printf("%d  ->  %d        %d        %d ", this->startNodeSP, i, distances[i], this->startNodeSP);
+        printf("%d  ->  %d        %d        %d ", this->startNodeSP, i, distances[i], this->startNodeSP);
 
-            printPath(parent, i);
-            cout << endl;
+        printPath(parent, i);
+        cout << endl;
     }
 
     delete [] distances;
     delete [] parent;
+    Q = priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>>();
     clear();
 }
 

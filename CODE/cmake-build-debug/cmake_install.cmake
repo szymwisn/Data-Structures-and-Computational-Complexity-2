@@ -1,4 +1,4 @@
-# Install script for directory: /home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE
+# Install script for directory: /home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/szymon/Git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/szymon/git/Data-Structures-and-Computational-Complexity-2/CODE/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -292,7 +292,7 @@ void printPathh(int *parent, int i) {
 }
 
 void AdjacencyMatrix::dijkstra() {
-    //TODO w kolejne piorytetowej przechowywac dystanse zamiast wierzcholkow
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> Q;
 
     // numer wierzcholka startowego
     int node = this->startNodeSP;
@@ -307,7 +307,7 @@ void AdjacencyMatrix::dijkstra() {
     int * parent = new int[this->nodes];
 
     // zaladowanie pierwszego wierzcholka do kolejki
-    this->priorQueue.push(Edge(node, node, 0));
+    Q.push(make_pair(0, node));
 
     // ustawienie dystansu do siebie na 0
     distances[node] = 0;
@@ -315,12 +315,12 @@ void AdjacencyMatrix::dijkstra() {
     // pierwszy wierzcholek nie ma zadnego poprzednika w sciezce
     parent[node] = -1;
 
-    while(!this->priorQueue.empty()) {
+    while(!Q.empty()) {
         // pobranie atrybutu source wierzcholka
-        int v1 = priorQueue.top().source;
+        int v1 = Q.top().second;
 
         // usuniecie wierzcholka o najnizszej wadze z kolejki piorytetowej
-        priorQueue.pop();
+        Q.pop();
 
         // itracja po kazdym sasiadujacym wierzcholku
         for(int i = 0; i < this->nodes; i++) {
@@ -329,7 +329,7 @@ void AdjacencyMatrix::dijkstra() {
             // jesli jest krotsza droga z wierzcholka v1 do v2 to aktualizuje ja
             if(distances[i] > distances[v1] + weight) {
                 distances[i] = distances[v1] + weight;
-                priorQueue.push(Edge(i, v1, weight));
+                Q.push(make_pair(distances[i], i));
 
                 // zapisuje rodzica wierzcholka na potrzeby wyswietlenia calej sciezki
                 parent[i] = v1;
@@ -349,6 +349,7 @@ void AdjacencyMatrix::dijkstra() {
 
     delete [] distances;
     delete [] parent;
+    Q = priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>>();
     clear();
 }
 
@@ -370,8 +371,7 @@ void AdjacencyMatrix::fordBellman() {
 
     // ustawienie dystansu do siebie na 0
     distances[node] = 0;
-
-    // TODO wrzucic to do petli
+    
     // zapisanie wszystkich krawedzi do wektora
     vector<Edge> edges;
     for (int i = 0; i < this->nodes; i++) {
