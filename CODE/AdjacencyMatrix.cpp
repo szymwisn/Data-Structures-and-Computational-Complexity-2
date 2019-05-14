@@ -255,24 +255,14 @@ void AdjacencyMatrix::kruskal() {
     // tu przechowywana bedzie sumaryczna waga
     int weights = 0;
 
-    // zapisanie kazdego wierzcholka do struktury przechowujacej krawedzie
-    // latwiej wtedy posortowac
-    vector<Edge> edges;
-
-    for(int i = 0; i < this->nodes; i++) {
-        for(int j = 0; j < this->nodes; j++) {
-            edges.push_back(Edge(i, j, this->graph[i][j]));
-        }
-    }
-
     // posortowanie wierzcholkow wzgledem wagi - od najmniejszej do najwiekszej
-    sort(edges.begin(), edges.end(), compareWeightt);
+    sort(this->allEdges.begin(), this->allEdges.end(), compareWeightt);
 
     printf("\n--- Krawedzie z reprezentacji macierzowej---");
 
     // przechodze po kazdej krawedzi
-    auto iter = edges.begin();
-    while(iter != edges.end()) {
+    auto iter = this->allEdges.begin();
+    while(iter != this->allEdges.end()) {
         int v1 = (*iter).source;
         int v2 = (*iter).destination;
         int weight = (*iter).weight;

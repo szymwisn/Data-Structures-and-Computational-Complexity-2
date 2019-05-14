@@ -275,25 +275,14 @@ void AdjacencyList::kruskal() {
     // tu przechowywana bedzie sumaryczna waga
     int weights = 0;
 
-    // zapisanie kazdego wierzcholka do struktury przechowujacej krawedzie
-    // latwiej wtedy posortowac
-    vector<Edge> edges;
-    for (auto &i : this->graph) {
-        auto iter = i.begin();
-        while(iter != i.end()) {
-            edges.push_back((*iter));
-            iter++;
-        }
-    }
-
     // posortowanie wierzcholkow wzgledem wagi - od najmniejszej do najwiekszej
-    sort(edges.begin(), edges.end(), compareWeight);
+    sort(this->allEdges.begin(), this->allEdges.end(), compareWeight);
 
     printf("\n--- Krawedzie z reprezentacji listowej ---");
 
     // przechodze po kazdej krawedzi
-    auto iter = edges.begin();
-    while(iter != edges.end()) {
+    auto iter = this->allEdges.begin();
+    while(iter != this->allEdges.end()) {
         int v1 = (*iter).source;
         int v2 = (*iter).destination;
         int weight = (*iter).weight;
