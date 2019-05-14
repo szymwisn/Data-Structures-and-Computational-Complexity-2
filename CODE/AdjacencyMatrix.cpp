@@ -292,6 +292,8 @@ void printPathh(int *parent, int i) {
 }
 
 void AdjacencyMatrix::dijkstra() {
+    //TODO w kolejne piorytetowej przechowywac dystanse zamiast wierzcholkow
+
     // numer wierzcholka startowego
     int node = this->startNodeSP;
 
@@ -369,6 +371,7 @@ void AdjacencyMatrix::fordBellman() {
     // ustawienie dystansu do siebie na 0
     distances[node] = 0;
 
+    // TODO wrzucic to do petli
     // zapisanie wszystkich krawedzi do wektora
     vector<Edge> edges;
     for (int i = 0; i < this->nodes; i++) {
